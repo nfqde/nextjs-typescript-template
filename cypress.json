@@ -1,0 +1,22 @@
+{
+    "baseUrl": "http://localhost:3000",
+    "component": {
+        "componentFolder": "./cypress/components",
+        "testFiles": "**/*.spec.{js,jsx}"
+    },
+    "env": {
+        "codeCoverage": {
+            "url": "/api/__coverage__"
+        },
+        "FEATURE_ENV": "test",
+        "NODE_ENV": "test"
+    },
+    "reporter": "mochawesome",
+    "reporterOptions": {
+        "reportDir": "cypress/reports",
+        "json": true,
+        "html": false,
+        "timestamp": "yyyymmddHHMMssl"
+    },
+    "videoUploadOnPasses": false
+}
