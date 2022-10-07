@@ -7,7 +7,9 @@ import {AnimatePresence, LazyMotion, m as motion} from 'framer-motion';
 import Head from 'next/head';
 import styled, {ThemeProvider} from 'styled-components';
 
+import {reportAccessibility} from 'Utils/axeCore';
 import {GlobalStyle, theme} from 'Utils/globalStyles';
+
 
 import type {FeatureBundle} from 'framer-motion';
 import type {AppProps} from 'types/global';
@@ -83,7 +85,7 @@ class App extends Component<AppProps<object>> {
                     <GlobalStyle />
                     <ScreenClassProvider>
                         <LazyMotion features={loadMotionFeatures} strict>
-                            <AnimatePresence initial={false} exitBeforeEnter>
+                            <AnimatePresence initial={false} mode="wait">
                                 <AnimationWrapper
                                     key={this.getLayoutKey()}
                                     animate="enter"
@@ -101,6 +103,8 @@ class App extends Component<AppProps<object>> {
         );
     }
 }
+
+void reportAccessibility(React);
 
 export default App;
 

@@ -8,7 +8,7 @@ import type {NextPageWithLayout} from 'types/global';
  * @returns The component.
  */
 const HomePage: NextPageWithLayout = () => (
-    <Container as="section">
+    <Container as="main">
         HomePage
     </Container>
 );
