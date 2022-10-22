@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import {INTERNAL_ERROR} from './httpCodes';
+import {Status} from './httpCodes';
 
 import type {NextApiRequest, NextApiResponse} from 'next';
 
@@ -15,8 +15,8 @@ export const errorHandler = (err: unknown, req: NextApiRequest, res: NextApiResp
 
     const {message = 'Unknown error'} = err as Error;
 
-    res.status(INTERNAL_ERROR).json({
+    res.status(Status.INTERNAL_ERROR).json({
         message,
-        statusCode: INTERNAL_ERROR
+        statusCode: Status.INTERNAL_ERROR
     });
 };

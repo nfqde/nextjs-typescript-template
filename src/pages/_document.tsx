@@ -15,7 +15,7 @@ export default class AppDocument extends Document {
      * Gets the initial server side props.
      *
      * @memberof AppDocument
-     * @param ctx The nextjs context object.
+     * @param    ctx The nextjs context object.
      *
      * @returns An props object.
      * @static
