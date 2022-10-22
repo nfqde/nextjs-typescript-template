@@ -2,24 +2,26 @@ import {COVERAGE} from '@app/features';
 
 import nextConnect from 'Server/nextConnect';
 
-import {NOT_FOUND, OK} from 'Server/utils/httpCodes';
+import {Status} from 'Server/utils/httpCodes';
+import {connectable, HTTP_METHODS, TypedRoute} from 'Server/utils/typedRoute';
 
-import type {NextApiRequest, NextApiResponse} from 'next';
+/**
+ * Coverage endpoint.
+ *
+ * @param req Request.
+ * @param res Response.
+ */
+const getCoverage = TypedRoute(HTTP_METHODS.GET, async () => {
+    if (COVERAGE) {
+        return Promise.resolve({
+            // eslint-disable-next-line no-underscore-dangle
+            coverage: global.__coverage__ ?? null,
+            status: Status.OK
+        });
+    }
+
+    return Promise.resolve({status: Status.NOT_FOUND});
+});
 
 export default nextConnect()
-    .get(
-        /**
-         * Coverage endpoint.
-         *
-         * @param req Request.
-         * @param res Response.
-         */
-        (req: NextApiRequest, res: NextApiResponse): void => {
-            if (COVERAGE) {
-                // eslint-disable-next-line no-underscore-dangle
-                res.status(OK).json({coverage: global.__coverage__ ?? null});
-            } else {
-                res.status(NOT_FOUND);
-            }
-        }
-    );
+    .get(connectable(getCoverage));

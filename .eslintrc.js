@@ -7,9 +7,6 @@ module.exports = {
         '@nfq'
     ],
     root: true,
-    rules: {
-        ...featureFlags.rules,
-        '@typescript-eslint/strict-boolean-expressions': 'off'
-    },
+    rules: {...featureFlags.rules},
     settings: {'import/resolver': withAliasesEslint()}
 };
