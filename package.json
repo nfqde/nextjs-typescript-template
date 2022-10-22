@@ -1,6 +1,6 @@
 {
   "name": "nextjs-template",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "engines": {
     "node": ">=14.0.0"
   },
@@ -13,6 +13,11 @@
   "sideEffects": [
     "**/*.css"
   ],
+  "template": {
+    "version": "1.0.0",
+    "name": "nextjs-typescript-template",
+    "path": "https://github.com/nfqde/nextjs-typescript-template.git"
+  },
   "scripts": {
     "analyze": "cross-env ANALYZE=true FEATURE_ENV=live next build",
     "analyze:browser": "cross-env ANALYZE=true BUNDLE_ANALYZE=browser FEATURE_ENV=live next build",
