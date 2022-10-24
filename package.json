@@ -25,6 +25,7 @@
     "build:live": "cross-env NODE_ENV=production FEATURE_ENV=live next build",
     "build:stage": "cross-env NODE_ENV=production FEATURE_ENV=stage next build",
     "build:test": "cross-env NODE_ENV=production FEATURE_ENV=test next build",
+    "check:types": "tsc -p .",
     "deploy": "standard-version && git push --follow-tags origin main",
     "dev": "python -t -m webbrowser http://localhost:3000 && cross-env FEATURE_ENV=stage next dev -H localhost",
     "lint": "eslint ./src --ext='.js, .jsx, .ts, .tsx'",

@@ -4,10 +4,9 @@ import React, {Component} from 'react';
 
 import {ScreenClassProvider} from '@nfq/react-grid';
 import {AnimatePresence, LazyMotion, m as motion} from 'framer-motion';
-import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import styled, {ThemeProvider} from 'styled-components';
 
-import {reportAccessibility} from 'Utils/axeCore';
 import {GlobalStyle, theme} from 'Utils/globalStyles';
 
 
@@ -15,6 +14,11 @@ import type {FeatureBundle} from 'framer-motion';
 import type {AppProps} from 'types/global';
 
 import 'Fonts/fonts';
+
+const AxeCoreHelper = dynamic(async () => import(
+    /* webpackChunkName: "axeCoreHelper" */
+    'Utils/AxeCoreHelper'
+), {ssr: false});
 
 /**
  * Loads the framer-motion features.
@@ -77,34 +81,28 @@ class App extends Component<AppProps<object>> {
      */
     render(): ReactNode {
         return (
-            <>
-                <Head>
-                    <meta content="initial-scale=1.0, width=device-width, maximum-scale=1.0" name="viewport" />
-                </Head>
-                <ThemeProvider theme={theme}>
-                    <GlobalStyle />
-                    <ScreenClassProvider>
-                        <LazyMotion features={loadMotionFeatures} strict>
-                            <AnimatePresence initial={false} mode="wait">
-                                <AnimationWrapper
-                                    key={this.getLayoutKey()}
-                                    animate="enter"
-                                    exit="exit"
-                                    initial="initial"
-                                    variants={layoutVariants}
-                                >
-                                    {this.chooseLayout()}
-                                </AnimationWrapper>
-                            </AnimatePresence>
-                        </LazyMotion>
-                    </ScreenClassProvider>
-                </ThemeProvider>
-            </>
+            <ThemeProvider theme={theme}>
+                <GlobalStyle />
+                <AxeCoreHelper />
+                <ScreenClassProvider>
+                    <LazyMotion features={loadMotionFeatures} strict>
+                        <AnimatePresence initial={false} mode="wait">
+                            <AnimationWrapper
+                                key={this.getLayoutKey()}
+                                animate="enter"
+                                exit="exit"
+                                initial="initial"
+                                variants={layoutVariants}
+                            >
+                                {this.chooseLayout()}
+                            </AnimationWrapper>
+                        </AnimatePresence>
+                    </LazyMotion>
+                </ScreenClassProvider>
+            </ThemeProvider>
         );
     }
 }
-
-void reportAccessibility(React);
 
 export default App;
 
