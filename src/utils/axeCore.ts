@@ -1,5 +1,9 @@
 import type React from 'react';
 
+// eslint-disable-next-line no-undef
+let timer: NodeJS.Timeout;
+let running = false;
+
 /**
  * Gets Accessibility.
  *
@@ -17,7 +21,20 @@ export const reportAccessibility = async (App: typeof React, config?: Record<str
             'react-dom'
         );
 
-        // eslint-disable-next-line @nfq/no-magic-numbers
-        await axe.default(App, ReactDOM, 1000, config);
+        if (running) {
+            clearTimeout(timer);
+
+            timer = setTimeout(async () => {
+                running = true;
+                // eslint-disable-next-line @nfq/no-magic-numbers
+                await axe.default(App, ReactDOM, 1000, config);
+                running = false;
+            }, 1000);
+        } else {
+            running = true;
+            // eslint-disable-next-line @nfq/no-magic-numbers
+            await axe.default(App, ReactDOM, 1000, config);
+            running = false;
+        }
     }
 };
