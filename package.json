@@ -53,12 +53,12 @@
     "swr": "^2.0.0-rc.0"
   },
   "devDependencies": {
-    "@axe-core/react": "^4.5.0",
+    "@axe-core/react": "^4.5.1-alpha.329",
     "@babel/core": "^7.19.6",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-decorators": "^7.20.0",
-    "@babel/plugin-transform-typescript": "^7.20.0",
+    "@babel/plugin-transform-typescript": "7.18.6",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@cypress/code-coverage": "^3.10.0",
@@ -67,7 +67,7 @@
     "@next/bundle-analyzer": "^13.0.0",
     "@nfq/eslint-config": "2.2.7",
     "@nfq/eslint-plugin": "^0.6.0",
-    "@nfq/feature-flags": "1.3.7",
+    "@nfq/feature-flags": "1.3.8",
     "@nfq/test-reporter": "^1.1.4",
     "@types/node": "18.11.7",
     "@types/react": "18.0.24",
@@ -108,8 +108,12 @@
     "react-is": "^18.2.0",
     "start-server-and-test": "^1.14.0",
     "typescript": "4.8.4",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack": "5.74.0",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.11.1"
+  },
+  "resolutions": {
+    "axe-core": "4.4.3",
+    "@babel/plugin-transform-typescript": "7.18.6"
   }
 }
