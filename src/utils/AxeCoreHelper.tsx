@@ -11,6 +11,8 @@ const AxeCoreHelper = () => {
     const observer = useRef(new MutationObserver(async () => reportAccessibility(React)));
 
     useEffect(() => {
+        void reportAccessibility(React);
+
         const currentObserver = observer.current;
 
         currentObserver.observe(document.body, {
