@@ -68,8 +68,6 @@ const nextConfig = phase => withBundleAnalyzer(
                             type: 'asset/resource'
                         });
 
-                        console.log(config.watchOptions);
-
                         config.plugins.push(new DuplicatePackageCheckerPlugin({
                             /**
                              * Excludes packages from checking.
