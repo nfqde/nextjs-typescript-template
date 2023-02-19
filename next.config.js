@@ -59,7 +59,7 @@ const nextConfig = phase => withBundleAnalyzer(
                     /**
                      * The webpack config.
                      *
-                     * @param {any} config The config to use.
+                     * @param {import('webpack').Configuration} config The config to use.
                      * @returns {any} The nextjs webpack config changed.
                      */
                     webpack(config) {

@@ -47,8 +47,13 @@ const nfqgrid: IConfig = {
     }
 };
 
+export const colors = {
+    /** Page background color. ![#F2F4F7](https://via.placeholder.com/12/F2F4F7/F2F4F7.png) `#F2F4F7`. */
+    pageBackground: '#FFFFFF'
+};
+
 export const theme: DefaultTheme = {
-    colors: {pageBackground: '#FFFFFF'},
+    colors,
     nfqgrid
 };
 
