@@ -59,7 +59,7 @@ const nextConfig = phase => withBundleAnalyzer(
                     /**
                      * The webpack config.
                      *
-                     * @param {any} config The config to use.
+                     * @param {import('webpack').Configuration} config The config to use.
                      * @returns {any} The nextjs webpack config changed.
                      */
                     webpack(config) {
@@ -67,6 +67,8 @@ const nextConfig = phase => withBundleAnalyzer(
                             test: /\.ttf|\.woff2/u,
                             type: 'asset/resource'
                         });
+
+                        console.log(config.watchOptions);
 
                         config.plugins.push(new DuplicatePackageCheckerPlugin({
                             /**
