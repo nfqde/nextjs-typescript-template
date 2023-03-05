@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 const withBundleAnalyzer = require('@next/bundle-analyzer')({enabled: process.env.ANALYZE === 'true'});
 const {withFeatureFlags} = require('@nfq/feature-flags/next');
+const WatchFontsConfigPlugin = require('@nfq/next-fonts/webpack');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 
 const {permissions} = require('./headers');
@@ -79,6 +80,8 @@ const nextConfig = phase => withBundleAnalyzer(
                                 return instance.name === 'react-is';
                             }
                         }));
+
+                        config.plugins.push(new WatchFontsConfigPlugin());
 
                         return config;
                     }

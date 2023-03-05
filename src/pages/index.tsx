@@ -1,4 +1,5 @@
 import {Container} from '@nfq/react-grid';
+import styled from 'styled-components';
 
 import type {NextPageWithLayout} from 'types/global';
 
@@ -9,7 +10,7 @@ import type {NextPageWithLayout} from 'types/global';
  */
 const HomePage: NextPageWithLayout = () => (
     <Container as="main">
-        HomePage
+        <P>HomePage</P>
     </Container>
 );
 
@@ -33,3 +34,7 @@ HomePage.getLayout = (router, pageProps, PageComponent) => <PageComponent router
 HomePage.getLayoutKey = () => '';
 
 export default HomePage;
+
+const P = styled.p`
+    font-family: ${({theme}) => theme.fonts.Lato};
+`;
