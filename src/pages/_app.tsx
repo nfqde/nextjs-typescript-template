@@ -2,13 +2,14 @@
 import type {ReactNode} from 'react';
 import React, {Component} from 'react';
 
+import {preloadFonts} from '@nfq/next-fonts';
 import {ScreenClassProvider} from '@nfq/react-grid';
 import {AnimatePresence, LazyMotion, m as motion} from 'framer-motion';
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import styled, {ThemeProvider} from 'styled-components';
 
-import {GlobalStyle, theme} from 'Utils/globalStyles';
-
+import {fontDefinitions, GlobalStyle, theme} from 'Utils/globalStyles';
 
 import type {FeatureBundle} from 'framer-motion';
 import type {AppProps} from 'types/global';
@@ -82,6 +83,11 @@ class App extends Component<AppProps<object>> {
     render(): ReactNode {
         return (
             <ThemeProvider theme={theme}>
+                <Head>
+                    <meta content="initial-scale=1.0, width=device-width" name="viewport" />
+                    <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+                    {preloadFonts(fontDefinitions)}
+                </Head>
                 <GlobalStyle />
                 <AxeCoreHelper />
                 <ScreenClassProvider>

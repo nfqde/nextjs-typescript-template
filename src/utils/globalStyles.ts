@@ -1,7 +1,27 @@
+import {configureFonts, getFontThemeList} from '@nfq/next-fonts';
 import {createGlobalStyle} from 'styled-components';
 
 import type {IConfig} from '@nfq/react-grid';
 import type {DefaultTheme} from 'styled-components';
+
+export const fontDefinitions = configureFonts({
+    Lato: [
+        {
+            fontDisplay: 'swap',
+            fontStyle: 'normal',
+            fontWeight: 'bold',
+            preload: true,
+            src: '/fonts/lato-bold.woff2'
+        },
+        {
+            fontDisplay: 'swap',
+            fontStyle: 'normal',
+            fontWeight: 'normal',
+            preload: true,
+            src: '/fonts/lato-regular.woff2'
+        }
+    ]
+});
 
 const nfqgrid: IConfig = {
     baseSpacing: 0.5,
@@ -54,6 +74,7 @@ export const colors = {
 
 export const theme: DefaultTheme = {
     colors,
+    fonts: getFontThemeList(fontDefinitions),
     nfqgrid
 };
 
