@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@nfq/react-grid": "^2.13.1",
+    "@nfq/next-fonts": "1.1.2",
     "core-decorators": "^0.20.0",
     "framer-motion": "^10.0.2",
     "next": "^13.2.3",
@@ -68,7 +69,6 @@
     "@nfq/eslint-config": "^2.2.11",
     "@nfq/eslint-plugin": "^0.6.0",
     "@nfq/feature-flags": "^3.0.0",
-    "@nfq/next-fonts": "1.1.0",
     "@nfq/test-reporter": "^1.1.5",
     "@types/node": "^18.14.6",
     "@types/react": "^18.0.28",
