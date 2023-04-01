@@ -102,6 +102,8 @@ const withAliasesEslint = () => ({
 });
 
 module.exports = {
+    aliases,
+    extensions,
     withAliases,
     withAliasesEslint
 };
