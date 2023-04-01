@@ -30,7 +30,7 @@ jobs:
         env:
           CI: TRUE
       - name: Install Node Dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
         env:
           CI: TRUE
       - name: Test Code Linting
