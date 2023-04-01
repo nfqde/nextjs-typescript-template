@@ -20,6 +20,7 @@ reporter/
 cypress/screenshots
 cypress/videos
 cypress/reports
+cypress/downloads
 coverage
 .nyc_output
 
