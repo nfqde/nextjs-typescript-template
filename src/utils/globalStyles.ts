@@ -1,7 +1,7 @@
 import {configureFonts, getFontThemeList} from '@nfq/next-fonts';
 import {createGlobalStyle} from 'styled-components';
 
-import type {IConfig} from '@nfq/react-grid';
+import type {Config} from '@nfq/react-grid';
 import type {DefaultTheme} from 'styled-components';
 
 export const fontDefinitions = configureFonts({
@@ -23,24 +23,8 @@ export const fontDefinitions = configureFonts({
     ]
 });
 
-const nfqgrid: IConfig = {
+const nfqgrid: Config = {
     baseSpacing: 0.5,
-    breakpoints: {
-        lg: 992,
-        md: 769,
-        sm: 576,
-        xl: 1200,
-        xs: 0,
-        xxl: 1600
-    },
-    columns: {
-        lg: 12,
-        md: 12,
-        sm: 12,
-        xl: 12,
-        xs: 12,
-        xxl: 12
-    },
     container: {
         lg: 960,
         md: 740,
@@ -48,22 +32,6 @@ const nfqgrid: IConfig = {
         xl: 1140,
         xs: 'fluid',
         xxl: 1140
-    },
-    gutterWidth: {
-        lg: 20,
-        md: 20,
-        sm: 20,
-        xl: 20,
-        xs: 20,
-        xxl: 20
-    },
-    paddingWidth: {
-        lg: 10,
-        md: 10,
-        sm: 10,
-        xl: 10,
-        xs: 10,
-        xxl: 10
     }
 };
 
