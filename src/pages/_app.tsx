@@ -3,7 +3,7 @@ import type {ReactNode} from 'react';
 import React, {Component} from 'react';
 
 import {preloadFonts} from '@nfq/next-fonts';
-import {ScreenClassProvider} from '@nfq/react-grid';
+import {ScreenSizeProvider} from '@nfq/react-grid';
 import {AnimatePresence, LazyMotion, m as motion} from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
@@ -90,7 +90,7 @@ class App extends Component<AppProps<object>> {
                 </Head>
                 <GlobalStyle />
                 <AxeCoreHelper />
-                <ScreenClassProvider>
+                <ScreenSizeProvider>
                     <LazyMotion features={loadMotionFeatures} strict>
                         <AnimatePresence initial={false} mode="wait">
                             <AnimationWrapper
@@ -104,7 +104,7 @@ class App extends Component<AppProps<object>> {
                             </AnimationWrapper>
                         </AnimatePresence>
                     </LazyMotion>
-                </ScreenClassProvider>
+                </ScreenSizeProvider>
             </ThemeProvider>
         );
     }
