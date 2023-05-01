@@ -18,7 +18,8 @@ declare global {
              *
              * @example cy.mountHook(useHook);
              */
-            mountHook<T extends (...args: any) => any>(hook: T): {component: React.FC; values: ReturnType<T>};
+            mountHook<T extends (...args: any) => any>(hook: T):
+                Chainable<{MockComponent(): ReactElement; values: {current: ReturnType<T> | null}}>;
         }
 
         interface Chainer<Subject> {

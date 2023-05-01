@@ -1,4 +1,6 @@
-import {ScreenClassProvider} from '@nfq/react-grid';
+import React from 'react';
+
+import {ScreenSizeProvider} from '@nfq/react-grid';
 import {LazyMotion} from 'framer-motion';
 import styled, {ThemeProvider} from 'styled-components';
 
@@ -53,11 +55,11 @@ const TestWrapper = ({bgColor, children, height, padding, testId, width}: WithCh
     <TestWrapperElement bgColor={bgColor} data-cy={testId} height={height} padding={padding} width={width}>
         <ThemeProvider theme={theme}>
             <GlobalStyle />
-            <ScreenClassProvider>
+            <ScreenSizeProvider>
                 <LazyMotion features={loadMotionFeatures} strict>
                     {children}
                 </LazyMotion>
-            </ScreenClassProvider>
+            </ScreenSizeProvider>
         </ThemeProvider>
     </TestWrapperElement>
 );

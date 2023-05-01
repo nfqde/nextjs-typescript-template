@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import 'cypress/react18';
+import type {ReactElement} from 'react';
 
 // ***********************************************
 // This example commands.ts shows you how to
@@ -41,23 +42,23 @@ import 'cypress/react18';
 Cypress.Commands.add('getCy', value => cy.get(`[data-cy="${value}"]`));
 
 Cypress.Commands.add('mountHook', hook => {
-    let hookValues;
+    const hookValues = {current: null};
 
     /**
      * Mock component to mount the hook.
      *
      * @returns Null.
      */
-    const MockComponent = () => {
-        hookValues = hook();
+    const MockComponent = (): ReactElement => {
+        hookValues.current = hook();
 
-        return null;
+        return null as unknown as ReactElement;
     };
 
-    return {
-        component: MockComponent,
+    return cy.wrap({
+        MockComponent,
         values: hookValues
-    };
+    });
 });
 
 /**
