@@ -36,7 +36,7 @@ const nfqgrid: Config = {
 };
 
 export const colors = {
-    /** Page background color. ![#F2F4F7](https://via.placeholder.com/12/F2F4F7/F2F4F7.png) `#F2F4F7`. */
+    /** Page background color. ![#FFFFFF](https://via.placeholder.com/12/FFFFFF/FFFFFF.png) `#FFFFFF`. */
     pageBackground: '#FFFFFF'
 };
 
