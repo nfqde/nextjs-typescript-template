@@ -35,13 +35,19 @@ const nfqgrid: Config = {
     }
 };
 
-export const colors = {
+export enum Colors {
     /** Page background color. ![#FFFFFF](https://via.placeholder.com/12/FFFFFF/FFFFFF.png) `#FFFFFF`. */
-    pageBackground: '#FFFFFF'
-};
+    pageBackground = '#FFFFFF'
+}
+
+export enum BoxShadows {
+    /** The default dropshadow for Popovers. */
+    popOverShadow = '0px 0px 10px 5px rgba(25, 38, 48, 0.05)'
+}
 
 export const theme: DefaultTheme = {
-    colors,
+    boxShadows: BoxShadows,
+    colors: Colors,
     fonts: getFontThemeList(fontDefinitions),
     nfqgrid
 };

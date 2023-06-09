@@ -81,7 +81,10 @@ const nextConfig = phase => withBundleAnalyzer(
                             }
                         }));
 
-                        config.plugins.push(new WatchFontsConfigPlugin());
+                        config.plugins.push(new WatchFontsConfigPlugin({
+                            globalStylesPath: './src/utils/globalStyles.ts',
+                            outputPath: './src/assets/fonts/fonts.css'
+                        }));
 
                         return config;
                     }

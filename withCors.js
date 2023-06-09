@@ -4,7 +4,7 @@ const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
  * @type {Array<string>} The cors definitions.
  */
 const corsDev = [
-    'default-src \'none\'',
+    'default-src \'unsafe-eval\' blob:',
     'base-uri \'self\'',
     'connect-src \'self\'',
     'font-src \'self\' https: data:',
@@ -12,7 +12,6 @@ const corsDev = [
     'frame-ancestors \'self\'',
     'img-src \'self\' data:',
     'object-src \'none\'',
-    'prefetch-src \'self\'',
     'script-src \'self\' \'unsafe-eval\'',
     'script-src-attr \'none\'',
     'style-src \'self\' https: \'unsafe-inline\'',
@@ -23,7 +22,7 @@ const corsDev = [
  * @type {Array<string>} The cors definitions.
  */
 const corsProd = [
-    'default-src \'none\'',
+    'default-src \'unsafe-eval\' blob:',
     'base-uri \'self\'',
     'connect-src \'self\'',
     'font-src \'self\' https: data:',
@@ -31,7 +30,6 @@ const corsProd = [
     'frame-ancestors \'self\'',
     'img-src \'self\' data:',
     'object-src \'none\'',
-    'prefetch-src \'self\'',
     'script-src \'self\' \'unsafe-eval\'',
     'script-src-attr \'none\'',
     'style-src \'self\' https: \'unsafe-inline\'',

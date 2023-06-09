@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type {ReactElement, ReactNode} from 'react';
 
 import type {
     InferGetServerSidePropsType,
@@ -27,4 +27,7 @@ export interface Layout<T> {
 export type GetLayout<T> = (router: NextRouter, pageProps: T, PageComponent: NextComponentWithLayout) => ReactNode;
 export type GetLayoutKey = () => string;
 
-export type WithChildren<T = object> = T & {children?: ReactNode};
+export type WithOptionalChildren<T = object> = T & {children?: ReactNode};
+export type WithMultipleChildren<T = object> = T & {children: ReactElement[]};
+export type WithChildren<T = object> = T & {children: ReactNode};
+export type WithChild<T = object> = T & {children: ReactElement};
