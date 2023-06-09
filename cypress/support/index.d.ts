@@ -44,6 +44,50 @@ declare global {
              */
             // eslint-disable-next-line @typescript-eslint/unified-signatures
             (chainer: 'not.be.an.htmlElement', value: string): Chainable<Subject>;
+            /**
+             * Custom Chai assertion that checks if given subject is an specific HTML element.
+             *
+             * @example
+             * ```
+             * expect('foo').to.be.dark
+             * cy.wrap('foo').should('be.dark')
+             * ```
+             */
+            // eslint-disable-next-line @typescript-eslint/unified-signatures
+            (chainer: 'be.dark'): Chainable<Subject>;
+            /**
+             * Custom Chai assertion that checks if given subject is an specific HTML element.
+             *
+             * @example
+             * ```
+             * expect('foo').to.not.be.dark
+             * cy.wrap('foo').should('not.be.dark')
+             * ```
+             */
+            // eslint-disable-next-line @typescript-eslint/unified-signatures
+            (chainer: 'not.be.dark'): Chainable<Subject>;
+            /**
+             * Custom Chai assertion that checks if given subject is an specific HTML element.
+             *
+             * @example
+             * ```
+             * expect('foo').to.be.darker
+             * cy.wrap('foo').should('be.darker')
+             * ```
+             */
+            // eslint-disable-next-line @typescript-eslint/unified-signatures
+            (chainer: 'be.darker'): Chainable<Subject>;
+            /**
+             * Custom Chai assertion that checks if given subject is an specific HTML element.
+             *
+             * @example
+             * ```
+             * expect('foo').to.not.be.darker
+             * cy.wrap('foo').should('not.be.darker')
+             * ```
+             */
+            // eslint-disable-next-line @typescript-eslint/unified-signatures
+            (chainer: 'not.be.darker'): Chainable<Subject>;
         }
     }
 }
