@@ -1,4 +1,4 @@
-import '../../src/assets/fonts/fonts';
+import '../../src/client/ui/assets/fonts/fonts';
 
 // ***********************************************************
 // This example support/component.ts is processed and
@@ -17,7 +17,7 @@ import '../../src/assets/fonts/fonts';
 
 // Code coverage
 import '@cypress/code-coverage/support';
-
+import 'cypress-real-events';
 // Import commands.js using ES2015 syntax:
 import './commands';
 

@@ -1,6 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 import 'cypress/react18';
-import type {ReactElement} from 'react';
+import type {ReactElement, ReactNode} from 'react';
+
+import color from 'onecolor';
 
 // ***********************************************
 // This example commands.ts shows you how to
@@ -22,7 +25,7 @@ import type {ReactElement} from 'react';
 //
 //
 // -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
+// Cypress.Commands.add('dismiss', {prevSubject: 'optional'}, (subject, options) => { ... })
 //
 //
 // -- This will overwrite an existing command --
@@ -47,10 +50,45 @@ Cypress.Commands.add('mountHook', hook => {
     /**
      * Mock component to mount the hook.
      *
+     * @param props          Props given to the component.
+     * @param props.children Function to render the hook.
      * @returns Null.
      */
-    const MockComponent = (): ReactElement => {
+    const MockComponent = ({children}: {children?(data: ReturnType<typeof hook>): ReactNode}): ReactElement => {
         hookValues.current = hook();
+
+        if (typeof children === 'function') {
+            return children(hookValues.current) as unknown as ReactElement;
+        }
+
+        return null as unknown as ReactElement;
+    };
+
+    return cy.wrap({
+        MockComponent,
+        values: hookValues
+    });
+});
+
+Cypress.Commands.add('mountHooks', (...args) => {
+    const hookValues: {current: any[] | null} = {current: null};
+
+    /**
+     * Mock component to mount the hook.
+     *
+     * @param props          Props given to the component.
+     * @param props.children Function to render the hook.
+     * @returns Null.
+     */
+    const MockComponent = (
+        {children}: {children?(data: ReturnType<typeof args[number]>[]): ReactNode}
+    ): ReactElement => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
+        hookValues.current = args.map(hook => hook());
+
+        if (typeof children === 'function') {
+            return children(hookValues.current) as unknown as ReactElement;
+        }
 
         return null as unknown as ReactElement;
     };
@@ -148,6 +186,34 @@ const hasDarkerColor = (chai: Chai.ChaiStatic) => {
     chai.Assertion.addMethod('darker', assertRbaColor);
 };
 
+/**
+ * Tests if an element is of an specific type.
+ *
+ * @param chai The chai object.
+ */
+const ColorsEqual = (chai: Chai.ChaiStatic) => {
+    /**
+     * Asserts for an specific html tagName.
+     *
+     * @param colorString Options given to the command.
+     */
+    function assertColors(this: Chai.AssertionStatic, colorString: string) {
+        const expected = color(colorString);
+        const actual = color(this._obj as string);
+
+        this.assert(
+            actual.equals(expected),
+            'expected #{act} to be the same color as #{exp}',
+            'expected #{act} to be a different color than #{exp}',
+            expected.hex(),
+            actual.hex()
+        );
+    }
+
+    chai.Assertion.addMethod('colored', assertColors);
+};
+
 chai.use(isHtmlElement);
 chai.use(hasDarkColor);
 chai.use(hasDarkerColor);
+chai.use(ColorsEqual);

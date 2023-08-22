@@ -3,40 +3,40 @@ const path = require('path');
 
 const aliases = [
     {
-        alias: 'Classes',
-        path: './src/classes/'
+        alias: 'Client',
+        path: './src/client/'
     },
     {
-        alias: 'Components',
-        path: './src/components/'
-    },
-    {
-        alias: 'Configs',
-        path: './src/configs/'
+        alias: 'Application',
+        path: './src/client/application/'
     },
     {
         alias: 'Fonts',
-        path: './src/assets/fonts/'
+        path: './src/client/ui/assets/fonts/'
     },
     {
         alias: 'Images',
-        path: './src/assets/images/'
+        path: './src/client/ui/assets/images/'
     },
     {
-        alias: 'Modules',
-        path: './src/modules/'
+        alias: 'UI',
+        path: './src/client/ui/'
     },
     {
         alias: 'Server',
         path: './src/server/'
     },
     {
-        alias: 'Stores',
-        path: './src/stores/'
+        alias: 'Controllers',
+        path: './src/server/controllers/'
     },
     {
-        alias: 'Utils',
-        path: './src/utils/'
+        alias: 'Services',
+        path: './src/server/services/'
+    },
+    {
+        alias: 'Tests',
+        path: './cypress/'
     }
 ];
 

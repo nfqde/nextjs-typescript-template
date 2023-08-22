@@ -4,7 +4,7 @@ import {ScreenSizeProvider} from '@nfq/react-grid';
 import {LazyMotion} from 'framer-motion';
 import styled, {ThemeProvider} from 'styled-components';
 
-import {GlobalStyle, theme} from 'Utils/globalStyles';
+import {GlobalStyle, theme} from 'UI/utils/globalStyles';
 
 import type {WithChildren} from '../../types/global';
 import type {FeatureBundle} from 'framer-motion';
@@ -19,7 +19,7 @@ import 'Fonts/fonts';
 const loadMotionFeatures = async (): Promise<FeatureBundle> => {
     const module = await import(
         /* webpackChunkName: "motionFeatures" */
-        'Utils/motionFeatures'
+        'UI/utils/motionFeatures'
     );
 
     return module.default;

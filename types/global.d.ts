@@ -20,8 +20,8 @@ export type AppProps<P = any> = Omit<NextAppProps<P>, 'pageProps'> & {
     pageProps: P;
 };
 export interface Layout<T> {
-    static getLayout?: GetLayout<T>;
-    static getLayoutKey?: GetLayoutKey;
+    getLayout?: GetLayout<T>;
+    getLayoutKey?: GetLayoutKey;
 }
 
 export type GetLayout<T> = (router: NextRouter, pageProps: T, PageComponent: NextComponentWithLayout) => ReactNode;

@@ -1,12 +1,14 @@
-/** @type {import("@previewjs/config").PreviewConfig} */
+/** @type {import('@previewjs/config').PreviewConfig} */
 module.exports = {
     alias: {
-        Classes: './src/classes',
-        Components: './src/components',
-        Fonts: './src/assets/fonts',
-        Images: './src/assets/images',
-        Modules: './src/modules',
+        Application: './src/client/application',
+        Client: './src/client',
+        Controllers: './src/server/controllers',
+        Fonts: './src/client/ui/assets/fonts',
+        Images: './src/client/ui/assets/images',
         Server: './src/server',
-        Utils: './src/utils'
+        Services: './src/server/services',
+        Tests: './cypress',
+        UI: './src/client/ui'
     }
 };
