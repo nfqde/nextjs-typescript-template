@@ -198,6 +198,9 @@ devDependencies:
   mochawesome:
     specifier: ^7.1.3
     version: 7.1.3(mocha@10.2.0)
+  mochawesome-merge:
+    specifier: ^4.3.0
+    version: 4.3.0
   nyc:
     specifier: ^15.1.0
     version: 15.1.0
@@ -6320,6 +6323,16 @@ packages:
 
   /mochawesome-merge@4.2.1:
     resolution: {integrity: sha512-G7+LqIKgixShKG4FyWDn1PIrzpKEwCofrJip/VzdqghNGqZl4S5MNoXx5YDfk9KLe+pr4qGa1TOzCc/oVw/8Kw==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    dependencies:
+      fs-extra: 7.0.1
+      glob: 7.2.3
+      yargs: 15.4.1
+    dev: true
+
+  /mochawesome-merge@4.3.0:
+    resolution: {integrity: sha512-1roR6g+VUlfdaRmL8dCiVpKiaUhbPVm1ZQYUM6zHX46mWk+tpsKVZR6ba98k2zc8nlPvYd71yn5gyH970pKBSw==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     dependencies:
