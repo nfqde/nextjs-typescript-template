@@ -69,7 +69,7 @@
     "@cypress/code-coverage": "^3.11.0",
     "@next/bundle-analyzer": "^13.4.19",
     "@next/env": "^13.4.19",
-    "@nfq/eslint-config": "^3.0.1",
+    "@nfq/eslint-config": "^3.0.3",
     "@nfq/eslint-plugin": "^0.6.1",
     "@nfq/feature-flags": "^3.0.3",
     "@nfq/test-reporter": "^1.1.5",
