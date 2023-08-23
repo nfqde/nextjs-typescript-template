@@ -3,6 +3,8 @@
 
 import './commands';
 
+type Fn<I, O> = (...input: I) => O;
+
 declare global {
     namespace Cypress {
         interface Chainable {
@@ -19,7 +21,21 @@ declare global {
              * @example cy.mountHook(useHook);
              */
             mountHook<T extends (...args: any) => any>(hook: T):
-                Chainable<{MockComponent(): ReactElement; values: {current: ReturnType<T> | null}}>;
+                Chainable<{
+                    MockComponent(props: {children?(data: ReturnType<T>): ReactNode}): ReactElement;
+                    values: {current: ReturnType<T> | null};
+                }>;
+
+            /**
+             * Custom command to mount hooks for testing.
+             *
+             * @example cy.mountHook(useHook);
+             */
+            mountHooks<T extends Fn<any, any>[]>(...args: T):
+                Chainable<{
+                    MockComponent(props: {children?(data: ReturnType<T[number]>[]): ReactNode}): ReactElement;
+                    values: {current: ReturnType<T[number]>[] | null};
+                }>;
         }
 
         interface Chainer<Subject> {
@@ -88,6 +104,28 @@ declare global {
              */
             // eslint-disable-next-line @typescript-eslint/unified-signatures
             (chainer: 'not.be.darker'): Chainable<Subject>;
+            /**
+             * Custom Chai assertion that checks if given subject is an specific color.
+             *
+             * @example
+             * ```
+             * expect('foo').to.be.colored(color)
+             * cy.wrap('foo').should('have.css', 'background-color').and('be.colored', color)
+             * ```
+             */
+            // eslint-disable-next-line @typescript-eslint/unified-signatures
+            (chainer: 'be.colored'): Chainable<Subject>;
+            /**
+             * Custom Chai assertion that checks if given subject is an specific color.
+             *
+             * @example
+             * ```
+             * expect('foo').to.not.be.colored(color)
+             * cy.wrap('foo').should('have.css', 'background-color').and('not.be.colored', color)
+             * ```
+             */
+            // eslint-disable-next-line @typescript-eslint/unified-signatures
+            (chainer: 'not.be.colored'): Chainable<Subject>;
         }
     }
 }

@@ -4,7 +4,6 @@ declare var __coverage__: boolean | string | null | undefined;
 declare namespace NodeJS {
     interface ProcessEnv {
         BASE_URL: string;
-        JWT_SECRET: string;
-        MONGODB_URI: string;
+        FEATURE_ENV: string;
     }
 }

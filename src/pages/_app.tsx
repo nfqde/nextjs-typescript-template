@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import styled, {ThemeProvider} from 'styled-components';
 
-import {fontDefinitions, GlobalStyle, theme} from 'Utils/globalStyles';
+import {fontDefinitions, GlobalStyle, theme} from 'UI/utils/globalStyles';
 
 import type {FeatureBundle} from 'framer-motion';
 import type {AppProps} from 'types/global';
@@ -18,7 +18,7 @@ import 'Fonts/fonts';
 
 const AxeCoreHelper = dynamic(async () => import(
     /* webpackChunkName: "axeCoreHelper" */
-    'Utils/AxeCoreHelper'
+    'UI/utils/AxeCoreHelper'
 ), {ssr: false});
 
 /**
@@ -29,7 +29,7 @@ const AxeCoreHelper = dynamic(async () => import(
 const loadMotionFeatures = async (): Promise<FeatureBundle> => {
     const module = await import(
         /* webpackChunkName: "motionFeatures" */
-        'Utils/motionFeatures'
+        'UI/utils/motionFeatures'
     );
 
     return module.default;

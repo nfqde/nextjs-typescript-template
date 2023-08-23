@@ -1,6 +1,6 @@
 // import original module declarations
 import 'styled-components';
-import type {BoxShadows, Colors, fontDefinitions} from 'Utils/globalStyles';
+import type {BoxShadows, Colors, fontDefinitions} from 'UI/utils/globalStyles';
 
 import type {FontList} from '@nfq/next-fonts';
 import type {Config} from '@nfq/react-grid';

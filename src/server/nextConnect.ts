@@ -1,5 +1,7 @@
 import {createRouter} from 'next-connect';
 
+import {demoMiddleware} from 'Server/middleware/demoMiddleware';
+
 import type {NextApiRequest, NextApiResponse} from 'next';
 
 /**
@@ -10,7 +12,7 @@ import type {NextApiRequest, NextApiResponse} from 'next';
 const nextConnect = () => {
     const router = createRouter<NextApiRequest, NextApiResponse>();
 
-    return router;
+    return router.use(demoMiddleware);
 };
 
 export default nextConnect;

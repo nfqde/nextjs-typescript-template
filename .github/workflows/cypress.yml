@@ -1,0 +1,42 @@
+name: Cypress
+
+on: [pull_request]
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Node.JS 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+
+      - name: Set Tokens
+        run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM }} && npm config set @gsap:registry https://npm.greensock.com/ && npm config set //npm.greensock.com/:_authToken ${{ secrets.GSAP }}
+
+      - name: Install Pnpm
+        run: sudo npm -g i pnpm
+        env:
+          CI: TRUE
+
+      - name: Cypress.io
+        uses: cypress-io/github-action@v5
+        with:
+          config-file: cypress.config.ts
+          component: true
+          browser: electron
+          headed: false
+        env:
+          NODE_ENV: test
+
+      - name: Merge Cypress Reports
+        run: npx mochawesome-merge ./cypress/reports/mocha*.json > ./cypress/reports/index.json
+
+      - name: Cypress report action
+        uses: dmitry/cypress-report-action@1.0.0
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          pathname: cypress/reports/index.json
