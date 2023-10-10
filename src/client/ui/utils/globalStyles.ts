@@ -37,7 +37,9 @@ const nfqgrid: Config = {
 
 export enum Colors {
     /** Page background color. ![#FFFFFF](https://via.placeholder.com/12/FFFFFF/FFFFFF.png) `#FFFFFF`. */
-    pageBackground = '#FFFFFF'
+    pageBackground = '#FFFFFF',
+    /** Primary font color. ![#192630](https://via.placeholder.com/12/192630/192630.png) `#192630`. */
+    primaryFontColor = '#192630'
 }
 
 export enum BoxShadows {
@@ -61,6 +63,7 @@ export const GlobalStyle = createGlobalStyle`
 
     * {
         -webkit-tap-highlight-color: transparent;
+        -webkit-tap-highlight-color: transparent;
     }
 
     html {
@@ -69,10 +72,11 @@ export const GlobalStyle = createGlobalStyle`
 
     html, body {
         background-color: ${({theme: globalTheme}) => globalTheme.colors.pageBackground};
+        color: ${({theme: globalTheme}) => globalTheme.colors.primaryFontColor};
         height: 100%;
         margin: 0;
         min-height: 100%;
-        overflow: hidden;
+        overflow-x: hidden;
         padding: 0;
         scroll-behavior: smooth;
     }
@@ -82,10 +86,5 @@ export const GlobalStyle = createGlobalStyle`
         height: 100%;
         min-height: 100%;
         overflow: hidden;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
     }
 `;

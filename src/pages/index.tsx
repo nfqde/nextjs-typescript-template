@@ -1,12 +1,14 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import {Container} from '@nfq/react-grid';
 import styled from 'styled-components';
 
 import type {NextPageWithLayout} from 'types/global';
 
 /**
- * HomePage.
+ * The `HomePage` component is a Next.js page component.
+ * It is used as a route and can be accessed throught the nextjs router.
  *
- * @returns The component.
+ * @returns A ReactNode representing the `HomePage` page.
  */
 const HomePage: NextPageWithLayout = () => (
     <Container as="main">
@@ -15,21 +17,33 @@ const HomePage: NextPageWithLayout = () => (
 );
 
 /**
- * Gets the layout for this page.
+ * `getLayout` is a static property of the `HomePage` component that is a function designed to wrap the component with a specified layout.
+ * It receives the router object, page properties, and the PageComponent and returns the PageComponent wrapped with the necessary layout and properties.
+ * This property is essential for applying consistent layouts across different pages in the application.
  *
- * @param router        The router object from nextjs.
- * @param pageProps     All page props given from server.
- * @param PageComponent The page component to render.
+ * @param router        The Next.js router object representing the current route of the application.
+ * @param pageProps     The page properties object representing the properties of the current page.
+ * @param PageComponent The PageComponent representing the current page.
+ * @returns A ReactNode representing the PageComponent wrapped with the necessary layout and properties.
  *
- * @returns The complete page.
+ * @example
+ * ```tsx
+ * const LayoutWrappedComponent = HomePage.getLayout(router, pageProps, PageComponent);
+ * ```
  */
-/* eslint-disable-next-line react/jsx-props-no-spreading */
 HomePage.getLayout = (router, pageProps, PageComponent) => <PageComponent router={router} {...pageProps} />;
 
 /**
- * Gets the layout key for the used layout.
+ * `getLayoutKey` is a static property of the `HomePage` component that is a function designed to return the layout key string.
+ * It is used to determine if the layout changed between pages to apply transitions between different layouts.
+ * This property is crucial for managing different layouts within the application and for providing a specific layout key for the `HomePage` component.
  *
- * @returns The complete page.
+ * @returns A string representing the layout key.
+ *
+ * @example
+ * ```tsx
+ * const layoutKey = HomePage.getLayoutKey();
+ * ```
  */
 HomePage.getLayoutKey = () => '';
 

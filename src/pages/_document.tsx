@@ -6,19 +6,23 @@ import {ServerStyleSheet} from 'styled-components';
 import type {DocumentContext, DocumentInitialProps} from 'next/document';
 
 /**
- * The App document class.
- *
- * @class AppDocument
+ * The `AppDocument` class extends the `Document` class and is used to augment the application's HTML document.
+ * It primarily focuses on server-side rendering and is crucial for rendering the initial HTML structure of the application.
+ * This class is essential for enhancing the overall structure of the application and for injecting additional elements or attributes into the HTML document.
  */
 export default class AppDocument extends Document {
     /**
-     * Gets the initial server side props.
+     * `getInitialProps` is a static asynchronous method designed to compute and return the initial properties for the document.
+     * It is responsible for rendering the application on the server side and collecting styles during the initial app load.
+     * This method is crucial for optimizing the rendering process and ensuring that the application is styled correctly from the start.
      *
-     * @memberof AppDocument
-     * @param    ctx The nextjs context object.
+     * @param ctx The DocumentContext object representing the context in which the document is rendered.
+     * @returns A promise resolving to an object containing the initial properties for the document, including the collected styles.
      *
-     * @returns An props object.
-     * @static
+     * @example
+     * ```tsx
+     * const initialProps = await AppDocument.getInitialProps(ctx);
+     * ```
      */
     static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
         const sheet = new ServerStyleSheet();
@@ -45,10 +49,11 @@ export default class AppDocument extends Document {
     }
 
     /**
-     * Renders the document.
+     * The `render` method is responsible for rendering the HTML document structure of the application.
+     * It defines the basic HTML elements and structure, including the head, body, and script tags.
+     * This method is essential for defining the overall layout and structure of the application's HTML document.
      *
-     * @memberof AppDocument
-     * @returns The document html.
+     * @returns A ReactElement representing the HTML document structure of the application.
      */
     render(): ReactElement {
         return (
