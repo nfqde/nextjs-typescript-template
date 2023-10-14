@@ -5,7 +5,7 @@ module.exports = withFeatureFlags({
         test: {
             plugins: [
                 ['@babel/plugin-proposal-decorators', {legacy: true}],
-                ['@babel/plugin-proposal-class-properties', {loose: false}],
+                ['@babel/plugin-transform-class-properties', {loose: false}],
                 ['@babel/plugin-transform-typescript'],
                 ['styled-components', {
                     fileName: true,
@@ -23,7 +23,7 @@ module.exports = withFeatureFlags({
     },
     plugins: [
         ['@babel/plugin-proposal-decorators', {legacy: true}],
-        ['@babel/plugin-proposal-class-properties', {loose: false}],
+        ['@babel/plugin-transform-class-properties', {loose: false}],
         ['@babel/plugin-transform-typescript'],
         ['styled-components', {
             fileName: true,

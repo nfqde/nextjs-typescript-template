@@ -3,12 +3,16 @@ const path = require('path');
 
 const aliases = [
     {
-        alias: 'Client',
-        path: './src/client/'
-    },
-    {
         alias: 'Application',
         path: './src/client/application/'
+    },
+    {
+        alias: 'Domain',
+        path: './src/client/domain/'
+    },
+    {
+        alias: 'Shared',
+        path: './src/client/shared/'
     },
     {
         alias: 'Fonts',
@@ -23,16 +27,28 @@ const aliases = [
         path: './src/client/ui/'
     },
     {
-        alias: 'Server',
-        path: './src/server/'
+        alias: 'ApiRoutes',
+        path: './src/pages/api/'
     },
     {
         alias: 'Controllers',
         path: './src/server/controllers/'
     },
     {
+        alias: 'ServerDomain',
+        path: './src/server/domain/'
+    },
+    {
+        alias: 'Middleware',
+        path: './src/server/middleware/'
+    },
+    {
         alias: 'Services',
         path: './src/server/services/'
+    },
+    {
+        alias: 'Utils',
+        path: './src/server/utils/'
     },
     {
         alias: 'Tests',

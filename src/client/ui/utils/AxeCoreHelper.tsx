@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 
-import {reportAccessibility} from './axeCore';
+import {reportAccessibility} from 'UI/utils/axeCore';
 
 // eslint-disable-next-line no-undef
 let timer: NodeJS.Timeout;
