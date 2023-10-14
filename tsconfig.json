@@ -18,15 +18,19 @@
         "strictPropertyInitialization": true,
         "noImplicitAny": true,
         "paths": {
-            "Client/*": ["./src/client/*"],
             "Application/*": ["./src/client/application/*"],
+            "Domain/*": ["./src/client/domain/*"],
+            "Shared/*": ["./src/client/shared/*"],
             "Fonts/*": ["./src/client/ui/assets/fonts/*"],
             "Images/*": ["./src/client/ui/assets/images/*"],
             "UI/*": ["./src/client/ui/*"],
-            "Server/*": ["./src/server/*"],
+            "ApiRoutes/*": ["./src/pages/api/*"],
             "Controllers/*": ["./src/server/controllers/*"],
+            "ServerDomain/*": ["./src/server/domain/*"],
+            "Middleware/*": ["./src/server/middleware/*"],
             "Services/*": ["./src/server/services/*"],
-            "Tests/*": ["./cypress/*"]
+            "Utils/*": ["./src/server/utils/*"],
+            "Tests/*": ["./cypress/*"],
         },
         "allowArbitraryExtensions": true,
         "types": ["node", "cypress", "cypress-real-events"]

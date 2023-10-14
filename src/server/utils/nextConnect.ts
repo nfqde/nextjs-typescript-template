@@ -1,6 +1,6 @@
 import {createRouter} from 'next-connect';
 
-import {demoMiddleware} from 'Server/middleware/demoMiddleware';
+import {demoMiddleware} from 'Middleware/demoMiddleware';
 
 import type {NextApiRequest, NextApiResponse} from 'next';
 
