@@ -23,7 +23,7 @@ jobs:
           CI: TRUE
 
       - name: Cypress.io
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           config-file: cypress.config.ts
           component: true
