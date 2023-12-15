@@ -4,8 +4,9 @@ module.exports = withFeatureFlags({
     env: {
         test: {
             plugins: [
-                ['@babel/plugin-proposal-decorators', {legacy: true}],
+                ['@babel/plugin-proposal-decorators', {version: '2023-05'}],
                 ['@babel/plugin-transform-class-properties', {loose: false}],
+                ['@babel/plugin-transform-class-static-block'],
                 ['@babel/plugin-transform-typescript'],
                 ['styled-components', {
                     fileName: true,
@@ -22,8 +23,9 @@ module.exports = withFeatureFlags({
         }
     },
     plugins: [
-        ['@babel/plugin-proposal-decorators', {legacy: true}],
+        ['@babel/plugin-proposal-decorators', {version: '2023-05'}],
         ['@babel/plugin-transform-class-properties', {loose: false}],
+        ['@babel/plugin-transform-class-static-block'],
         ['@babel/plugin-transform-typescript'],
         ['styled-components', {
             fileName: true,
