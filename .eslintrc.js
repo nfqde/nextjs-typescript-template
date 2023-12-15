@@ -3,9 +3,7 @@ const featureFlags = require('@nfq/feature-flags/eslint/import')(['@app/features
 const {withAliasesEslint} = require('./withAliases');
 
 module.exports = {
-    extends: [
-        '@nfq'
-    ],
+    extends: ['@nfq', 'plugin:storybook/recommended'],
     root: true,
     rules: {...featureFlags.rules},
     settings: {'import/resolver': withAliasesEslint()}
