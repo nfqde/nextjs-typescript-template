@@ -65,7 +65,13 @@ const TestWrapper = ({bgColor, children, height, padding, testId, width}: WithCh
 );
 
 TestWrapper.displayName = 'TestWrapper';
-TestWrapper.defaultProps = {testId: null};
+TestWrapper.defaultProps = {
+    bgColor: 'transparent',
+    height: '100%',
+    padding: '0',
+    testId: 'TestWrapper',
+    width: '100%'
+};
 
 export default TestWrapper;
 

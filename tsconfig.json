@@ -26,6 +26,8 @@
             "UI/*": ["./src/client/ui/*"],
             "ApiRoutes/*": ["./src/pages/api/*"],
             "Controllers/*": ["./src/server/controllers/*"],
+            "Errors/*": ["./src/server/errors/*"],
+            "ServerConfigs/*": ["./src/server/configs/*"],
             "ServerDomain/*": ["./src/server/domain/*"],
             "Middleware/*": ["./src/server/middleware/*"],
             "Services/*": ["./src/server/services/*"],

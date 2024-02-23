@@ -25,6 +25,7 @@ jobs:
       - name: Cypress.io
         uses: cypress-io/github-action@v6
         with:
+          install-command: yarn --frozen-lockfile --ignore-engines
           config-file: cypress.config.ts
           component: true
           browser: electron
