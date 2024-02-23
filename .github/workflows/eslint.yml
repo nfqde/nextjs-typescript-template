@@ -12,6 +12,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20.x"
+
       - name: Cache node modules
         uses: actions/cache@v3
         with:
@@ -21,28 +22,35 @@ jobs:
             ${{ runner.OS }}-build-${{ env.cache-name }}-
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
+
       - name: Set Tokens
         run: npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM }} && npm config set @gsap:registry https://npm.greensock.com/ && npm config set //npm.greensock.com/:_authToken ${{ secrets.GSAP }}
         env:
           CI: TRUE
+
       - name: Install Yarn
         run: sudo npm -g i yarn
         env:
           CI: TRUE
+
       - name: Install Node Dependencies
-        run: yarn
+        run: yarn --ignore-engines
         env:
           CI: TRUE
+
       - name: Test Code Linting
         run: yarn run lint
+
       - name: Save Code Linting Report JSON
         run: yarn run lint:report
         continue-on-error: true
+
       - name: Annotate Code Linting Results
         uses: ataylorme/eslint-annotate-action@2.2.0
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           report-json: "eslint_report.json"
+
       - name: Upload ESLint report
         uses: actions/upload-artifact@v4
         with:

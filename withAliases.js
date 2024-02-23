@@ -35,6 +35,14 @@ const aliases = [
         path: './src/server/controllers/'
     },
     {
+        alias: 'Errors',
+        path: './src/server/errors/'
+    },
+    {
+        alias: 'ServerConfigs',
+        path: './src/server/configs/'
+    },
+    {
         alias: 'ServerDomain',
         path: './src/server/domain/'
     },

@@ -27,6 +27,7 @@ coverage
 # misc
 .DS_Store
 *.pem
+.history
 
 # debug
 npm-debug.log*
@@ -46,3 +47,5 @@ yarn-error.log*
 # snyk
 .dccache
 .horusec/
+# stryker temp files
+.stryker-tmp
