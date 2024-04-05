@@ -1,23 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {Colors as ColorsList} from '../../../../src/client/ui/utils/globalStyles';
+import {BaseColors as BaseColorsList, DerivedColors as DerivedColorsList} from '../../../../src/client/ui/utils/globalStyles';
 
 import type {Meta, StoryObj} from '@storybook/react';
 
 const ColorGrid = () => {
-    const names = Object.keys(ColorsList).filter(key => isNaN(parseInt(key))).map(key => key);
-    const values = Object.values(ColorsList).filter(value => typeof value === 'string')
+    const baseNames = Object.keys(BaseColorsList).filter(key => isNaN(parseInt(key))).map(key => key);
+    const baseValues = Object.values(BaseColorsList).filter(value => typeof value === 'string');
+    const derivedNames = Object.keys(DerivedColorsList).filter(key => isNaN(parseInt(key))).map(key => key);
+    const derivedValues = Object.values(DerivedColorsList).filter(value => typeof value === 'string');
 
     return (
-        <Grid>
-            {names.map((name, index) => (
-                <ColorDisplay key={index}>
-                    <Color $color={values[index]} />
-                    <Text>{name}</Text>
-                </ColorDisplay>
-            ))}
-        </Grid>
+        <>
+            <Headline>Base Colors</Headline>
+            <Grid>
+                {baseNames.map((name, index) => (
+                    <ColorDisplay key={index}>
+                        <Color $color={baseValues[index]} />
+                        <Text>{name}</Text>
+                    </ColorDisplay>
+                ))}
+            </Grid>
+            <Headline>Derived Colors</Headline>
+            <Grid>
+                {derivedNames.map((name, index) => (
+                    <ColorDisplay key={index}>
+                        <Color $color={derivedValues[index]} />
+                        <Text>{name}</Text>
+                    </ColorDisplay>
+                ))}
+            </Grid>
+        </>
     );
 };
 
@@ -44,6 +58,11 @@ const Color = styled.div<{$color: string}>`
     aspect-ratio: 1 / 1;
     background-color: ${({$color}) => $color};
     width: 100%;
+`;
+
+const Headline = styled.h1`
+    font-family: ${({theme}) => theme.fonts.Lato};
+    font-size: 2.2rem;
 `;
 
 const Text = styled.span`
