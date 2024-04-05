@@ -145,6 +145,5 @@ class App extends Component<AppProps<object>> {
 export default App;
 
 const AnimationWrapper = styled(motion.div)`
-    height: 100%;
     width: 100%;
 `;

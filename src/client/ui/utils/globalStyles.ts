@@ -1,4 +1,5 @@
 import {configureFonts, getFontThemeList} from '@nfq/next-fonts';
+import {darken} from '@nfq/react-grid';
 import {createGlobalStyle} from 'styled-components';
 
 import type {Config} from '@nfq/react-grid';
@@ -24,23 +25,28 @@ export const fontDefinitions = configureFonts({
 });
 
 const nfqgrid: Config = {
-    baseSpacing: 0.5,
+    baseSpacing: 0.4,
     container: {
-        lg: 960,
-        md: 740,
-        sm: 540,
+        lg: 'fluid',
+        md: 'fluid',
+        sm: 'fluid',
         xl: 1140,
         xs: 'fluid',
         xxl: 1140
     }
 };
 
-export enum Colors {
+export const BaseColors = {
     /** Page background color. ![#FFFFFF](https://via.placeholder.com/12/FFFFFF/FFFFFF.png) `#FFFFFF`. */
-    pageBackground = '#FFFFFF',
+    pageBackground: '#FFFFFF',
     /** Primary font color. ![#192630](https://via.placeholder.com/12/192630/192630.png) `#192630`. */
-    primaryFontColor = '#192630'
-}
+    primaryFontColor: '#192630'
+} as const;
+
+export const DerivedColors = {
+    /** Darker Page background color. ![#FDFDFD](https://via.placeholder.com/12/FDFDFD/FDFDFD.png) `#FDFDFD`. */
+    darkerPageColor: darken(BaseColors.pageBackground, 10)
+} as const;
 
 export enum BoxShadows {
     /** The default dropshadow for Popovers. */
@@ -49,7 +55,10 @@ export enum BoxShadows {
 
 export const theme: DefaultTheme = {
     boxShadows: BoxShadows,
-    colors: Colors,
+    colors: {
+        ...BaseColors,
+        ...DerivedColors
+    },
     fonts: getFontThemeList(fontDefinitions),
     nfqgrid
 };
@@ -63,7 +72,6 @@ export const GlobalStyle = createGlobalStyle`
 
     * {
         -webkit-tap-highlight-color: transparent;
-        -webkit-tap-highlight-color: transparent;
     }
 
     html {
@@ -73,18 +81,13 @@ export const GlobalStyle = createGlobalStyle`
     html, body {
         background-color: ${({theme: globalTheme}) => globalTheme.colors.pageBackground};
         color: ${({theme: globalTheme}) => globalTheme.colors.primaryFontColor};
-        height: 100%;
         margin: 0;
         min-height: 100%;
-        overflow-x: hidden;
         padding: 0;
         scroll-behavior: smooth;
     }
 
     #__next {
-        background-color: ${({theme: globalTheme}) => globalTheme.colors.pageBackground};
-        height: 100%;
         min-height: 100%;
-        overflow: hidden;
     }
 `;
