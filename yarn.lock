@@ -13747,7 +13747,7 @@ webpack-dev-middleware@^7.1.0:
     range-parser "^1.2.1"
     schema-utils "^4.0.0"
 
-webpack-dev-server@5.0.4:
+webpack-dev-server@^5.0.4:
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-5.0.4.tgz#cb6ea47ff796b9251ec49a94f24a425e12e3c9b8"
   integrity sha512-dljXhUgx3HqKP2d8J/fUMvhxGhzjeNVarDLcbO/EWMSgRizDkxHQDZQaLFL5VJY9tRBj2Gz+rvCEYYvhbqPHNA==
