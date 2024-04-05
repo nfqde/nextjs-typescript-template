@@ -36,6 +36,9 @@ const nfqgrid: Config = {
     }
 };
 
+/**
+ * Base colors used in the application.
+ */
 export const BaseColors = {
     /** Page background color. ![#FFFFFF](https://via.placeholder.com/12/FFFFFF/FFFFFF.png) `#FFFFFF`. */
     pageBackground: '#FFFFFF',
@@ -43,6 +46,10 @@ export const BaseColors = {
     primaryFontColor: '#192630'
 } as const;
 
+/**
+ * Derived colors used in the application.
+ * Use this for colors made with `darken`, `lighten` and `translucify`.
+ */
 export const DerivedColors = {
     /** Darker Page background color. ![#FDFDFD](https://via.placeholder.com/12/FDFDFD/FDFDFD.png) `#FDFDFD`. */
     darkerPageColor: darken(BaseColors.pageBackground, 10)
