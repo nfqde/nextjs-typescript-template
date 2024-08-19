@@ -48,6 +48,10 @@ const preview: Preview = {
             default: 'Light',
             values: [
                 {
+                    name: 'None',
+                    value: 'transparent',
+                },
+                {
                     name: 'Dark',
                     value: '#000066',
                 },
