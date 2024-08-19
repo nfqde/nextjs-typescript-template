@@ -137,6 +137,13 @@
     "webpack-dev-server": "^5.0.4"
   },
   "resolutions": {
-    "postcss": "^8.4.31"
+    "axios": "^1.7.4",
+    "braces": "^3.0.3",
+    "elliptic": "^6.5.7",
+    "express": "^4.19.2",
+    "follow-redirects": "^1.15.6",
+    "postcss": "^8.4.31",
+    "tar": "^6.2.1",
+    "ws": "^8.17.1"
   }
 }

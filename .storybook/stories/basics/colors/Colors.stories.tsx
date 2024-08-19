@@ -1,19 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {BaseColors as BaseColorsList, DerivedColors as DerivedColorsList} from '../../../../src/client/ui/utils/globalStyles';
+import {BaseColors, DerivedColors, themeColors, themes} from '../../../../src/client/ui/utils/theme';
 
 import type {Meta, StoryObj} from '@storybook/react';
 
-const ColorGrid = () => {
-    const baseNames = Object.keys(BaseColorsList).filter(key => isNaN(parseInt(key))).map(key => key);
-    const baseValues = Object.values(BaseColorsList).filter(value => typeof value === 'string');
-    const derivedNames = Object.keys(DerivedColorsList).filter(key => isNaN(parseInt(key))).map(key => key);
-    const derivedValues = Object.values(DerivedColorsList).filter(value => typeof value === 'string');
+const options = new Set();
+
+if (typeof Object.values(BaseColors)[0] === 'object' && !Array.isArray(Object.values(BaseColors)[0])) {
+    Object.keys(BaseColors).forEach(key => options.add(key));
+}
+if (typeof Object.values(DerivedColors)[0] === 'object' && !Array.isArray(Object.values(DerivedColors)[0])) {
+    Object.keys(DerivedColors).forEach(key => options.add(key));
+}
+
+interface ComponentProps {
+    nfqTheme: typeof themes;
+}
+
+const ColorGrid = ({nfqTheme}: ComponentProps) => {
+    const baseNames = Object.keys(themeColors);
+    const baseValues = Object.values(themeColors);
 
     return (
-        <>
-            <Headline>Base Colors</Headline>
+        <BG data-nfq-theme={nfqTheme}>
+            <Headline>Theme Colors</Headline>
             <Grid>
                 {baseNames.map((name, index) => (
                     <ColorDisplay key={index}>
@@ -22,18 +33,16 @@ const ColorGrid = () => {
                     </ColorDisplay>
                 ))}
             </Grid>
-            <Headline>Derived Colors</Headline>
-            <Grid>
-                {derivedNames.map((name, index) => (
-                    <ColorDisplay key={index}>
-                        <Color $color={derivedValues[index]} />
-                        <Text>{name}</Text>
-                    </ColorDisplay>
-                ))}
-            </Grid>
-        </>
+        </BG>
     );
 };
+
+const BG = styled.div`
+    background-color: ${({theme}) => theme.colors.pageBackground};
+    min-height: 100dvh;
+    width: 100%;
+    color: var(--primaryFontColor);
+`;
 
 const Grid = styled.div`
     display: grid;
@@ -70,7 +79,15 @@ const Text = styled.span`
     font-size: 1.2rem;
 `;
 
+console.log(Array.from(options));
+
 const meta: Meta<typeof ColorGrid> = {
+    argTypes: {
+        nfqTheme: {
+            control: 'select',
+            options: Array.from(options)
+        }
+    },
     component: ColorGrid,
     title: 'Basics/Colors'
 };
@@ -79,4 +96,6 @@ export default meta;
 
 type Story = StoryObj<typeof ColorGrid>;
 
-export const Colors: Story = {parameters: {controls: {hideNoControlsWarning: true}}};
+export const Colors: Story = {
+    parameters: {backgrounds: {default: 'None'}}
+};

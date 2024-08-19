@@ -2,7 +2,7 @@ import {CustomContrastColors, darken, generateThemes, lighten} from '@nfq/colors
 
 import type {GetThemeType} from '@nfq/colors';
 
-const BaseColors = {
+export const BaseColors = {
     customContrast: {
         /** Page background color in custom contrast theme. */
         pageBackground: CustomContrastColors.Canvas,
@@ -23,7 +23,7 @@ const BaseColors = {
     } as const
 } as const;
 
-const DerivedColors = {
+export const DerivedColors = {
     dark: {
         /** Lighter Page background color for dark theme. ![#FDFDFD](https://via.placeholder.com/12/FDFDFD/FDFDFD.png) `#FDFDFD`. */
         pageBackgroundVariant: lighten(BaseColors.dark.pageBackground, 10)
