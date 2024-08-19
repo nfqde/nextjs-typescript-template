@@ -79,8 +79,6 @@ const Text = styled.span`
     font-size: 1.2rem;
 `;
 
-console.log(Array.from(options));
-
 const meta: Meta<typeof ColorGrid> = {
     argTypes: {
         nfqTheme: {
