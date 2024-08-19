@@ -4,13 +4,29 @@ const {withFeatureFlags} = require('@nfq/feature-flags/next');
 const {WatchFontsConfigPlugin} = require('@nfq/next-fonts/webpack');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 
+const liveFeatures = require('./features.live');
+const stageFeatures = require('./features.stage');
+const testFeatures = require('./features.test');
 const {permissions} = require('./headers');
 const {withAliases} = require('./withAliases');
 const withCors = require('./withCors');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    compiler: {styledComponents: true},
     eslint: {ignoreDuringBuilds: true},
+    experimental: {
+        swcPlugins: [[
+            '@nfq/feature-flags', {
+                featureEnv: process.env.FEATURE_ENV || 'stage',
+                featureFlags: {
+                    live: liveFeatures,
+                    stage: stageFeatures,
+                    test: testFeatures
+                }
+            }
+        ]]
+    },
     output: 'standalone',
     productionBrowserSourceMaps: true,
     reactStrictMode: true,
