@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScreenSizeProvider} from '@nfq/react-grid';
 import {LazyMotion} from 'framer-motion';
 import {ThemeProvider} from 'styled-components';
@@ -8,6 +8,16 @@ import type {Preview} from "@storybook/react";
 import type {FeatureBundle} from "framer-motion";
 
 import '../src/client/ui/assets/fonts/fonts.css';
+import {BaseColors, DerivedColors, themes} from '../src/client/ui/utils/theme';
+
+const options = new Set();
+
+if (typeof Object.values(BaseColors)[0] === 'object' && !Array.isArray(Object.values(BaseColors)[0])) {
+    Object.keys(BaseColors).forEach(key => options.add(key));
+}
+if (typeof Object.values(DerivedColors)[0] === 'object' && !Array.isArray(Object.values(DerivedColors)[0])) {
+    Object.keys(DerivedColors).forEach(key => options.add(key));
+}
 
 /**
  * Loads the framer-motion features.
@@ -31,17 +41,37 @@ const preview: Preview = {
         forwardedAs: {table: {disable: true}}
     },
     decorators: [
-        (Story) => (
-            <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <ScreenSizeProvider>
-                    <LazyMotion features={loadMotionFeatures} strict>
-                        <Story />
-                    </LazyMotion>
-                </ScreenSizeProvider>
-            </ThemeProvider>
-        )
+        (Story, context) => {
+            const selectedTheme = context.globals.nfqTheme || 'light';
+
+            useEffect(() => {
+                document.documentElement.dataset.nfqTheme = selectedTheme;
+            }, [selectedTheme]);
+
+            return (
+                <ThemeProvider theme={theme}>
+                    <GlobalStyle />
+                    <ScreenSizeProvider>
+                        <LazyMotion features={loadMotionFeatures} strict>
+                            <Story />
+                        </LazyMotion>
+                    </ScreenSizeProvider>
+                </ThemeProvider>
+            );
+        }
     ],
+    globalTypes: {
+        nfqTheme: {
+            description: 'Global theme for components',
+            defaultValue: themes ?? 'light',
+            toolbar: {
+                title: 'Theme',
+                icon: 'circlehollow',
+                items: Array.from(options),
+                dynamicTitle: true
+            }
+        }
+    },
     parameters: {
         actions: { argTypesRegex: "^on[A-Z].*" },
         backgrounds: {
