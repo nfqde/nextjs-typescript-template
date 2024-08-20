@@ -1,29 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {BaseColors, DerivedColors, themeColors, themes} from '../../../../src/client/ui/utils/theme';
+import {themeColors} from '../../../../src/client/ui/utils/theme';
 
 import type {Meta, StoryObj} from '@storybook/react';
 
-const options = new Set();
-
-if (typeof Object.values(BaseColors)[0] === 'object' && !Array.isArray(Object.values(BaseColors)[0])) {
-    Object.keys(BaseColors).forEach(key => options.add(key));
-}
-if (typeof Object.values(DerivedColors)[0] === 'object' && !Array.isArray(Object.values(DerivedColors)[0])) {
-    Object.keys(DerivedColors).forEach(key => options.add(key));
-}
-
-interface ComponentProps {
-    nfqTheme: typeof themes;
-}
-
-const ColorGrid = ({nfqTheme}: ComponentProps) => {
+const ColorGrid = () => {
     const baseNames = Object.keys(themeColors);
     const baseValues = Object.values(themeColors);
 
     return (
-        <BG data-nfq-theme={nfqTheme}>
+        <>
             <Headline>Theme Colors</Headline>
             <Grid>
                 {baseNames.map((name, index) => (
@@ -33,7 +20,7 @@ const ColorGrid = ({nfqTheme}: ComponentProps) => {
                     </ColorDisplay>
                 ))}
             </Grid>
-        </BG>
+        </>
     );
 };
 
@@ -80,12 +67,6 @@ const Text = styled.span`
 `;
 
 const meta: Meta<typeof ColorGrid> = {
-    argTypes: {
-        nfqTheme: {
-            control: 'select',
-            options: Array.from(options)
-        }
-    },
     component: ColorGrid,
     title: 'Basics/Colors'
 };
