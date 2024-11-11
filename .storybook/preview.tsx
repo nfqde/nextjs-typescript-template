@@ -75,7 +75,7 @@ const preview: Preview = {
     parameters: {
         actions: { argTypesRegex: "^on[A-Z].*" },
         backgrounds: {
-            default: 'Light',
+            default: 'None',
             values: [
                 {
                     name: 'None',
