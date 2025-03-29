@@ -1,6 +1,6 @@
 import type {StorybookConfig} from "@storybook/nextjs";
-import path from 'path';
-import {aliases, extensions} from '../withAliases';
+import {addAliases} from '../withAliases';
+import {addMocks} from '../withMocks';
 
 const config: StorybookConfig = {
     addons: [
@@ -25,18 +25,16 @@ const config: StorybookConfig = {
     },
     webpackFinal: async (config) => {
         if (config.resolve && config.resolve.fallback) {
+            // @ts-expect-error
             config.resolve.fallback['fs'] = false;
+            // @ts-expect-error
             config.resolve.fallback['stream'] = false;
+            // @ts-expect-error
             config.resolve.fallback['zlib'] = false;
-
-            config.resolve.extensions = extensions;
         }
 
-        aliases.forEach(alias => {
-            if (config.resolve && config.resolve.alias) {
-                config.resolve.alias[alias.alias] = path.resolve(__dirname, alias.path);
-            }
-        });
+        addAliases(config);
+        addMocks(config);
 
         return config;
     }
