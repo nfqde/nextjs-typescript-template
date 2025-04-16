@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import styled from '@emotion/styled';
 import {Container} from '@nfq/react-grid';
-import styled from 'styled-components';
 
 import type {NextPageWithLayout} from 'types/global';
 

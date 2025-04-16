@@ -13,19 +13,22 @@ const withCors = require('./withCors');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    compiler: {styledComponents: true},
+    compiler: {emotion: {autoLabel: 'never'}},
     eslint: {ignoreDuringBuilds: true},
     experimental: {
-        swcPlugins: [[
-            '@nfq/feature-flags', {
-                featureEnv: process.env.FEATURE_ENV || 'stage',
-                featureFlags: {
-                    live: liveFeatures,
-                    stage: stageFeatures,
-                    test: testFeatures
+        swcPlugins: [
+            [
+                '@nfq/feature-flags', {
+                    featureEnv: process.env.FEATURE_ENV || 'stage',
+                    featureFlags: {
+                        live: liveFeatures,
+                        stage: stageFeatures,
+                        test: testFeatures
+                    }
                 }
-            }
-        ]]
+            ],
+            ...(process.env.NODE_ENV === 'test' ? [['swc-plugin-coverage-instrument', {}]] : [])
+        ]
     },
     output: 'standalone',
     productionBrowserSourceMaps: true,
@@ -103,4 +106,11 @@ const nextConfig = {
     }
 };
 
-module.exports = phase => withBundleAnalyzer(withFeatureFlags(withAliases(withCors(nextConfig, {phase})), {phase}));
+module.exports = phase => withBundleAnalyzer(
+    withFeatureFlags(
+        withAliases(
+            withCors(nextConfig, {phase})
+        ),
+        {phase}
+    )
+);
