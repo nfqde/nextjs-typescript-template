@@ -1,7 +1,7 @@
 import {COVERAGE} from '@app/features';
 import {connectable, HTTP_METHODS, HTTP_STATUS, TypedRoute} from '@nfq/typed-next-api';
-import {errorHandler} from 'Utils/errorHandler';
 
+import {errorHandler} from 'Utils/errorHandler';
 import nextConnect from 'Utils/nextConnect';
 
 /**
