@@ -31,3 +31,15 @@ export type WithOptionalChildren<T = object> = T & {children?: ReactNode};
 export type WithMultipleChildren<T = object> = T & {children: ReactElement[]};
 export type WithChildren<T = object> = T & {children: ReactNode};
 export type WithChild<T = object> = T & {children: ReactElement};
+
+type Sizes = `${number}gb` | `${number}kb` | `${number}mb`;
+export interface NextApiRouteConfig {
+    api: {
+        bodyParser: false | {
+            sizeLimit: Sizes;
+        };
+        externalResolver?: boolean;
+        maxDuration?: number;
+        responseLimit?: Sizes;
+    };
+}
