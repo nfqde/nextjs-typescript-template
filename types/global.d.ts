@@ -8,7 +8,6 @@ import type {
     NextPageContext
 } from 'next';
 import type {AppProps as NextAppProps} from 'next/app';
-import type {NextRouter} from 'next/router';
 
 type NextComponentWithLayout = NextComponentType<NextPageContext, any, any> & Partial<NextPageWithLayout>;
 type NextPageWithLayout<T = any> = NextPage<T> & Layout<T>;
@@ -24,7 +23,7 @@ export interface Layout<T> {
     getLayoutKey?: GetLayoutKey;
 }
 
-export type GetLayout<T> = (router: NextRouter, pageProps: T, PageComponent: NextComponentWithLayout) => ReactNode;
+export type GetLayout<T> = (route: string, pageProps: T, PageComponent: NextComponentWithLayout) => ReactNode;
 export type GetLayoutKey = () => string;
 
 export type WithOptionalChildren<T = object> = T & {children?: ReactNode};
