@@ -129,7 +129,7 @@ class App extends Component<AppProps<object>> {
                     <AxeCoreHelper />
                     <ScreenSizeProvider>
                         <LazyMotion features={loadMotionFeatures}>
-                            <AnimatePresence mode="wait">
+                            <AnimatePresence initial={false} mode="wait">
                                 <AnimationWrapper
                                     key={this.getLayoutKey()}
                                     animate="enter"

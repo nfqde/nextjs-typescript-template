@@ -2,6 +2,8 @@
 import styled from '@emotion/styled';
 import {Container} from '@nfq/react-grid';
 
+import {AppLayout} from 'UI/layouts/AppLayout';
+
 import type {NextPageWithLayout} from 'types/global';
 
 /**
@@ -31,7 +33,11 @@ const HomePage: NextPageWithLayout = () => (
  * const LayoutWrappedComponent = HomePage.getLayout(router, pageProps, PageComponent);
  * ```
  */
-HomePage.getLayout = (route, pageProps, PageComponent) => <PageComponent route={route} {...pageProps} />;
+HomePage.getLayout = (route, pageProps, PageComponent) => (
+    <AppLayout route={route} title="Home">
+        <PageComponent {...pageProps} />
+    </AppLayout>
+);
 
 /**
  * `getLayoutKey` is a static property of the `HomePage` component that is a function designed to return the layout key string.
@@ -45,7 +51,7 @@ HomePage.getLayout = (route, pageProps, PageComponent) => <PageComponent route={
  * const layoutKey = HomePage.getLayoutKey();
  * ```
  */
-HomePage.getLayoutKey = () => '';
+HomePage.getLayoutKey = () => 'AppLayout';
 
 export default HomePage;
 

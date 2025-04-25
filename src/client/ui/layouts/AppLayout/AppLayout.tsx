@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import {Container} from '@nfq/react-grid';
 import {AnimatePresence} from 'motion/react';
 import * as motion from 'motion/react-m';
 import Head from 'next/head';
@@ -57,7 +56,6 @@ const AppLayout = ({children, route, testId = 'AppLayout', title}: WithChildren<
         <AnimatePresence mode="wait" propagate>
             <Content
                 key={route}
-                as="main"
                 variants={LayoutTransition}
             >
                 {children}
@@ -74,6 +72,4 @@ const Wrapper = styled.div`
     scrollbar-gutter: stable;
 `;
 
-const Content = styled(motion.create(Container))`
-    height: 100dvh;
-`;
+const Content = motion.main;
