@@ -59,15 +59,21 @@ export const globals = css`
 
     html {
         font-size: 10px;
+        scroll-behavior: smooth;
+        scroll-padding-top: 0px;
     }
 
     html, body {
-        background-color: ${themeColors.pageBackground};
-        color: ${themeColors.primaryFontColor};
         margin: 0;
         min-height: 100%;
+        position: relative;
+    }
+
+    body {
+        background-color: ${theme.colors.pageBackground};
+        color: ${theme.colors.primaryFontColor};
+        font-family: ${theme.fonts.Lato};
         padding: 0;
-        scroll-behavior: smooth;
     }
 
     #__next {

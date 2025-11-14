@@ -30,6 +30,10 @@ export type WithOptionalChildren<T = object> = T & {children?: ReactNode};
 export type WithMultipleChildren<T = object> = T & {children: ReactElement[]};
 export type WithChildren<T = object> = T & {children: ReactNode};
 export type WithChild<T = object> = T & {children: ReactElement};
+export type WithOnlyTextChild<T = object> = T & {children: (number | string)[] | number[] | string[] | number | string};
+export type WithOptionalOnlyTextChild<T = object> = T & {
+    children?: (number | string)[] | number[] | string[] | number | string;
+};
 
 type Sizes = `${number}gb` | `${number}kb` | `${number}mb`;
 export interface NextApiRouteConfig {

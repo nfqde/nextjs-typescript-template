@@ -3,6 +3,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({enabled: process.en
 const {withFeatureFlags} = require('@nfq/feature-flags/next');
 const {WatchFontsConfigPlugin} = require('@nfq/next-fonts/webpack');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
 
 const liveFeatures = require('./features.live');
 const stageFeatures = require('./features.stage');
@@ -12,7 +13,7 @@ const {withAliases} = require('./withAliases');
 const withCors = require('./withCors');
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = phase => ({
     compiler: {emotion: {autoLabel: 'never'}},
     eslint: {ignoreDuringBuilds: true},
     experimental: {
@@ -80,22 +81,21 @@ const nextConfig = {
      * @returns {any} The nextjs webpack config changed.
      */
     webpack(config) {
-        config.module.rules.push({
-            test: /\.ttf|\.woff2/u,
-            type: 'asset/resource'
-        });
+        const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 
-        config.plugins.push(new DuplicatePackageCheckerPlugin({
-            /**
-             * Excludes packages from checking.
-             *
-             * @param {object} instance The module instance object.
-             * @returns {boolean} True if the package should be excluded.
-             */
-            exclude(instance) {
-                return instance.name === 'react-is';
-            }
-        }));
+        if (isDev) {
+            config.plugins.push(new DuplicatePackageCheckerPlugin({
+                /**
+                 * Excludes packages from checking.
+                 *
+                 * @param {object} instance The module instance object.
+                 * @returns {boolean} True if the package should be excluded.
+                 */
+                exclude(instance) {
+                    return instance.name === 'react-is';
+                }
+            }));
+        }
 
         config.plugins.push(new WatchFontsConfigPlugin({
             globalStylesPath: './src/client/ui/utils/globalStyles.ts',
@@ -104,7 +104,7 @@ const nextConfig = {
 
         return config;
     }
-};
+});
 
 module.exports = phase => withBundleAnalyzer(
     withFeatureFlags(

@@ -13,10 +13,10 @@
         "moduleResolution": "bundler",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "jsx": "preserve",
-        "jsxImportSource": "@emotion/react",
+        "jsx": "react-jsx",
         "incremental": true,
         "strictPropertyInitialization": true,
+        "declaration": false,
         "noImplicitAny": true,
         "paths": {
             "Application/*": ["./src/client/application/*"],
@@ -33,10 +33,12 @@
             "Middleware/*": ["./src/server/middleware/*"],
             "Services/*": ["./src/server/services/*"],
             "Utils/*": ["./src/server/utils/*"],
-            "Tests/*": ["./cypress/*"]
+            "Tests/*": ["./cypress/*"],
+            "@app/features": ["./features.dev.js"]
         },
         "allowArbitraryExtensions": true,
-        "types": ["node", "cypress", "cypress-real-events", "@nfq/colors/cypress"]
+        "types": ["node", "cypress", "cypress-real-events", "@nfq/colors/cypress"],
+        "plugins": [{"name": "next"}]
     },
     "include": [
         "next-env.d.ts",
@@ -48,9 +50,12 @@
         "cypress/support/index.d.ts",
         "cypress/**/*.ts",
         "cypress/**/*.tsx",
+        ".storybook/**/*.ts",
+        ".storybook/**/*.tsx",
         ".storybook/stories/**/*.ts",
         ".storybook/stories/**/*.tsx",
-        "__previewjs__/**/*.tsx"
+        ".next/types/**/*.ts",
+        ".next/dev/types/**/*.ts"
     ],
     "exclude": ["node_modules"]
 }

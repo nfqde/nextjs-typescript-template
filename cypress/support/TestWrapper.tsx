@@ -1,10 +1,11 @@
 import React from 'react';
 
-import {Global, ThemeProvider} from '@emotion/react';
+import {CacheProvider, Global, ThemeProvider} from '@emotion/react';
 import styled from '@emotion/styled';
 import {ScreenSizeProvider} from '@nfq/react-grid';
 import {LazyMotion} from 'motion/react';
 
+import {createEmotionCache} from 'Application/configs/emotionCache';
 import {globals, theme} from 'UI/utils/globalStyles';
 
 import type {WithChildren} from '../../types/global';
@@ -106,18 +107,24 @@ const TestWrapper = ({
     padding = '0',
     testId = 'TestWrapper',
     width = '100%'
-}: WithChildren<ComponentProps>) => (
-    <TestWrapperElement bgColor={bgColor} data-cy={testId} height={height} padding={padding} width={width}>
-        <ThemeProvider theme={theme}>
-            <Global styles={globals} />
-            <ScreenSizeProvider>
-                <LazyMotion features={loadMotionFeatures} strict>
-                    {children}
-                </LazyMotion>
-            </ScreenSizeProvider>
-        </ThemeProvider>
-    </TestWrapperElement>
-);
+}: WithChildren<ComponentProps>) => {
+    const emotionCache = React.useMemo(() => createEmotionCache(), []);
+
+    return (
+        <TestWrapperElement bgColor={bgColor} data-cy={testId} height={height} padding={padding} width={width}>
+            <CacheProvider value={emotionCache}>
+                <ThemeProvider theme={theme}>
+                    <Global styles={globals} />
+                    <ScreenSizeProvider>
+                        <LazyMotion features={loadMotionFeatures} strict>
+                            {children}
+                        </LazyMotion>
+                    </ScreenSizeProvider>
+                </ThemeProvider>
+            </CacheProvider>
+        </TestWrapperElement>
+    );
+};
 
 TestWrapper.displayName = 'TestWrapper';
 

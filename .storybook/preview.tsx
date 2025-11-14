@@ -1,14 +1,16 @@
 import React, {useEffect} from 'react';
 import {ScreenSizeProvider} from '@nfq/react-grid';
 import {LazyMotion} from 'motion/react';
-import {Global, ThemeProvider} from '@emotion/react';
-import {globals, theme} from '../src/client/ui/utils/globalStyles';
+import {CacheProvider, Global, ThemeProvider} from '@emotion/react';
+import {globals, theme} from 'UI/utils/globalStyles';
 
 import type {Preview} from '@storybook/react';
 import type {FeatureBundle} from 'motion/react';
 
 import '../src/client/ui/assets/fonts/fonts.css';
-import {BaseColors, DerivedColors, themes} from '../src/client/ui/utils/theme';
+import {BaseColors, DerivedColors, themes} from 'UI/utils/theme';
+import {createEmotionCache} from 'Application/configs/emotionCache';
+import {initialize, mswLoader} from 'msw-storybook-addon';
 
 const options = new Set();
 
@@ -18,6 +20,8 @@ if (typeof Object.values(BaseColors)[0] === 'object' && !Array.isArray(Object.va
 if (typeof Object.values(DerivedColors)[0] === 'object' && !Array.isArray(Object.values(DerivedColors)[0])) {
     Object.keys(DerivedColors).forEach(key => options.add(key));
 }
+
+const cache = createEmotionCache();
 
 /**
  * Loads the motion features.
@@ -33,6 +37,13 @@ const loadMotionFeatures = async (): Promise<FeatureBundle> => {
     return module.default;
 };
 
+/*
+ * Initializes MSW
+ * See https://github.com/mswjs/msw-storybook-addon#configuring-msw
+ * to learn how to customize it
+ */
+initialize();
+
 const preview: Preview = {
     argTypes: {
         ref: {table: {disable: true}},
@@ -40,6 +51,7 @@ const preview: Preview = {
         as: {table: {disable: true}},
         forwardedAs: {table: {disable: true}}
     },
+
     decorators: [
         (Story, context) => {
             const selectedTheme = context.globals.nfqTheme || 'light';
@@ -49,17 +61,20 @@ const preview: Preview = {
             }, [selectedTheme]);
 
             return (
-                <ThemeProvider theme={theme}>
-                    <Global styles={globals} />
-                    <ScreenSizeProvider>
-                        <LazyMotion features={loadMotionFeatures} strict>
-                            <Story />
-                        </LazyMotion>
-                    </ScreenSizeProvider>
-                </ThemeProvider>
+                <CacheProvider value={cache}>
+                    <ThemeProvider theme={theme}>
+                        <Global styles={globals} />
+                        <ScreenSizeProvider>
+                            <LazyMotion features={loadMotionFeatures} strict>
+                                <Story />
+                            </LazyMotion>
+                        </ScreenSizeProvider>
+                    </ThemeProvider>
+                </CacheProvider>
             );
         }
     ],
+
     globalTypes: {
         nfqTheme: {
             description: 'Global theme for components',
@@ -72,28 +87,33 @@ const preview: Preview = {
             }
         }
     },
+
+    loaders: [mswLoader],
+
     parameters: {
         actions: { argTypesRegex: "^on[A-Z].*" },
         backgrounds: {
-            default: 'None',
-            values: [
-                {
+            options: {
+                none: {
                     name: 'None',
                     value: 'transparent',
                 },
-                {
+
+                dark: {
                     name: 'Dark',
                     value: '#000066',
                 },
-                {
+
+                light: {
                     name: 'Light',
                     value: '#F3F5F6',
                 },
-                {
+
+                white: {
                     name: 'White',
                     value: '#FFFFFF',
                 }
-            ]
+            }
         },
         controls: {
             matchers: {
@@ -101,6 +121,12 @@ const preview: Preview = {
                 date: /Date$/,
             },
             sort: 'requiredFirst'
+        }
+    },
+
+    initialGlobals: {
+        backgrounds: {
+            value: 'none'
         }
     }
 };

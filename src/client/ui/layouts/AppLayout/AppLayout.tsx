@@ -53,7 +53,7 @@ const AppLayout = ({children, route, testId = 'AppLayout', title}: WithChildren<
         <Head>
             <title>{title}</title>
         </Head>
-        <AnimatePresence mode="wait" propagate>
+        <AnimatePresence initial={false} mode="wait" propagate>
             <Content
                 key={route}
                 variants={LayoutTransition}
