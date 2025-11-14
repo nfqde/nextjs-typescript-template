@@ -2,6 +2,8 @@
 import styled from '@emotion/styled';
 import {Container} from '@nfq/react-grid';
 
+import {AppLayout} from 'UI/layouts/AppLayout';
+
 import type {NextPageWithLayout} from 'types/global';
 
 /**
@@ -21,7 +23,7 @@ const HomePage: NextPageWithLayout = () => (
  * It receives the router object, page properties, and the PageComponent and returns the PageComponent wrapped with the necessary layout and properties.
  * This property is essential for applying consistent layouts across different pages in the application.
  *
- * @param router        The Next.js router object representing the current route of the application.
+ * @param route         The base path of current route.
  * @param pageProps     The page properties object representing the properties of the current page.
  * @param PageComponent The PageComponent representing the current page.
  * @returns A ReactNode representing the PageComponent wrapped with the necessary layout and properties.
@@ -31,7 +33,11 @@ const HomePage: NextPageWithLayout = () => (
  * const LayoutWrappedComponent = HomePage.getLayout(router, pageProps, PageComponent);
  * ```
  */
-HomePage.getLayout = (router, pageProps, PageComponent) => <PageComponent router={router} {...pageProps} />;
+HomePage.getLayout = (route, pageProps, PageComponent) => (
+    <AppLayout route={route} title="Home">
+        <PageComponent {...pageProps} />
+    </AppLayout>
+);
 
 /**
  * `getLayoutKey` is a static property of the `HomePage` component that is a function designed to return the layout key string.
@@ -45,7 +51,7 @@ HomePage.getLayout = (router, pageProps, PageComponent) => <PageComponent router
  * const layoutKey = HomePage.getLayoutKey();
  * ```
  */
-HomePage.getLayoutKey = () => '';
+HomePage.getLayoutKey = () => 'AppLayout';
 
 export default HomePage;
 
