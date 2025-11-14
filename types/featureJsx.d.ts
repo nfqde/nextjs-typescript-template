@@ -1,10 +1,13 @@
 /* eslint-disable max-classes-per-file, react/no-multi-comp */
-import {Component} from 'react';
-
 declare module '@nfq/feature-flags/jsx' {
+    import type {ReactNode} from 'react';
+    import {Component} from 'react';
+
     interface IFeature {
+        children: ReactNode;
         deprecatesOn?: string;
-        feature: string;
+        feature: boolean[] | boolean;
+        neverDeprecates?: boolean;
     }
 
     /**

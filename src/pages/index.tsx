@@ -13,7 +13,7 @@ import type {NextPageWithLayout} from 'types/global';
  * @returns A ReactNode representing the `HomePage` page.
  */
 const HomePage: NextPageWithLayout = () => (
-    <Container as="main">
+    <Container>
         <P>HomePage</P>
     </Container>
 );

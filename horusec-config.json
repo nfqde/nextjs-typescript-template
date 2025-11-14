@@ -25,7 +25,7 @@
     "horusecCliHeaders": {},
     "horusecCliMonitorRetryInSeconds": 15,
     "horusecCliPrintOutputType": "text",
-    "horusecCliRepositoryName": "NextJs-Typescript-Github-Template",
+    "horusecCliRepositoryName": "NextJs Typescript Github Template",
     "horusecCliReturnErrorIfFoundVulnerability": true,
     "horusecCliSeveritiesToIgnore": [
       "INFO"
