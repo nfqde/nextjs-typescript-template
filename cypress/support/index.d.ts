@@ -15,7 +15,6 @@ declare global {
              * @example cy.getCy('greeting')
              */
             getCy(value: string): Chainable<JQuery>;
-
             /**
              * Custom command to mount hooks for testing.
              *
@@ -26,7 +25,6 @@ declare global {
                     MockComponent(props: {children?(data: ReturnType<T>): ReactNode}): ReactElement;
                     values: {current: ReturnType<T> | null};
                 }>;
-
             /**
              * Custom command to mount hooks for testing.
              *

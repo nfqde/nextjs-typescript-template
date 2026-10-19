@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "baseUrl": "./",
         "target": "ES2017",
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
@@ -25,6 +24,7 @@
             "Fonts/*": ["./src/client/ui/assets/fonts/*"],
             "Images/*": ["./src/client/ui/assets/images/*"],
             "UI/*": ["./src/client/ui/*"],
+            "GlobalShared/*": ["./src/shared/*"],
             "ApiRoutes/*": ["./src/pages/api/*"],
             "Controllers/*": ["./src/server/controllers/*"],
             "Errors/*": ["./src/server/errors/*"],
@@ -34,7 +34,8 @@
             "Services/*": ["./src/server/services/*"],
             "Utils/*": ["./src/server/utils/*"],
             "Tests/*": ["./cypress/*"],
-            "@app/features": ["./features.dev.js"]
+            "@app/features": ["./features.dev.js"],
+            "types/*": ["./types/*"]
         },
         "allowArbitraryExtensions": true,
         "types": ["node", "cypress", "cypress-real-events", "@nfq/colors/cypress"],
@@ -42,18 +43,25 @@
     },
     "include": [
         "next-env.d.ts",
-        "withMocks.ts",
+        "eslint.config.mjs",
+        "withCors.js",
+        "withAliases.js",
+        "stryker.config.js",
+        "headers.js",
+        "features.dev.js",
+        "features.test.js",
+        "features.live.js",
+        "features.stage.js",
         "src/**/*.ts",
         "src/**/*.tsx",
         "types/**/*.ts",
+        "types/**/*.d.ts",
         "cypress.config.ts",
         "cypress/support/index.d.ts",
         "cypress/**/*.ts",
         "cypress/**/*.tsx",
         ".storybook/**/*.ts",
         ".storybook/**/*.tsx",
-        ".storybook/stories/**/*.ts",
-        ".storybook/stories/**/*.tsx",
         ".next/types/**/*.ts",
         ".next/dev/types/**/*.ts"
     ],

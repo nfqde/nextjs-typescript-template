@@ -1,18 +1,22 @@
 import React, {useEffect} from 'react';
-import {ScreenSizeProvider} from '@nfq/react-grid';
-import {LazyMotion} from 'motion/react';
+
 import {CacheProvider, Global, ThemeProvider} from '@emotion/react';
-import {globals, theme} from 'UI/utils/globalStyles';
+import {ScreenSizeProvider} from '@nfq/react-grid';
+import {AnimatePresence, LazyMotion} from 'motion/react';
+import * as motion from 'motion/react-m';
+import {mswLoader} from 'msw-storybook-addon/csf3';
+
+import {createEmotionCache} from '../src/client/application/configs/emotionCache';
+import {LayoutTransition} from '../src/client/ui/animations/layout';
+import {globals, theme} from '../src/client/ui/utils/globalStyles';
+import {BaseColors, DerivedColors, themes} from '../src/client/ui/utils/theme';
 
 import type {Preview} from '@storybook/react';
 import type {FeatureBundle} from 'motion/react';
 
-import '../src/client/ui/assets/fonts/fonts.css';
-import {BaseColors, DerivedColors, themes} from 'UI/utils/theme';
-import {createEmotionCache} from 'Application/configs/emotionCache';
-import {initialize, mswLoader} from 'msw-storybook-addon';
+import 'Fonts/fonts';
 
-const options = new Set();
+const options = new Set<string>();
 
 if (typeof Object.values(BaseColors)[0] === 'object' && !Array.isArray(Object.values(BaseColors)[0])) {
     Object.keys(BaseColors).forEach(key => options.add(key));
@@ -37,21 +41,13 @@ const loadMotionFeatures = async (): Promise<FeatureBundle> => {
     return module.default;
 };
 
-/*
- * Initializes MSW
- * See https://github.com/mswjs/msw-storybook-addon#configuring-msw
- * to learn how to customize it
- */
-initialize();
-
 const preview: Preview = {
     argTypes: {
-        ref: {table: {disable: true}},
-        theme: {table: {disable: true}},
         as: {table: {disable: true}},
-        forwardedAs: {table: {disable: true}}
+        forwardedAs: {table: {disable: true}},
+        ref: {table: {disable: true}},
+        theme: {table: {disable: true}}
     },
-
     decorators: [
         (Story, context) => {
             const selectedTheme = context.globals.nfqTheme || 'light';
@@ -66,7 +62,16 @@ const preview: Preview = {
                         <Global styles={globals} />
                         <ScreenSizeProvider>
                             <LazyMotion features={loadMotionFeatures} strict>
-                                <Story />
+                                <AnimatePresence>
+                                    <motion.div
+                                        animate="enter"
+                                        exit="exit"
+                                        initial="initial"
+                                        variants={LayoutTransition}
+                                    >
+                                        <Story />
+                                    </motion.div>
+                                </AnimatePresence>
                             </LazyMotion>
                         </ScreenSizeProvider>
                     </ThemeProvider>
@@ -74,22 +79,19 @@ const preview: Preview = {
             );
         }
     ],
-
     globalTypes: {
         nfqTheme: {
-            description: 'Global theme for components',
             defaultValue: themes ?? 'light',
+            description: 'Global theme for components',
             toolbar: {
-                title: 'Theme',
+                dynamicTitle: true,
                 icon: 'circlehollow',
                 items: Array.from(options),
-                dynamicTitle: true
+                title: 'Theme'
             }
         }
     },
-
-    loaders: [mswLoader],
-
+    loaders: [mswLoader()],
     parameters: {
         actions: { argTypesRegex: "^on[A-Z].*" },
         backgrounds: {
@@ -123,7 +125,6 @@ const preview: Preview = {
             sort: 'requiredFirst'
         }
     },
-
     initialGlobals: {
         backgrounds: {
             value: 'none'

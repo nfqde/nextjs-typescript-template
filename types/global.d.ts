@@ -26,12 +26,12 @@ export interface Layout<T> {
 export type GetLayout<T> = (route: string, pageProps: T, PageComponent: NextComponentWithLayout) => ReactNode;
 export type GetLayoutKey = () => string;
 
-export type WithOptionalChildren<T = object> = T & {children?: ReactNode};
-export type WithMultipleChildren<T = object> = T & {children: ReactElement[]};
-export type WithChildren<T = object> = T & {children: ReactNode};
-export type WithChild<T = object> = T & {children: ReactElement};
-export type WithOnlyTextChild<T = object> = T & {children: (number | string)[] | number[] | string[] | number | string};
-export type WithOptionalOnlyTextChild<T = object> = T & {
+export type WithOptionalChildren<T = Record<string, never>> = T & {children?: ReactNode};
+export type WithMultipleChildren<T = Record<string, never>> = T & {children: ReactElement[]};
+export type WithChildren<T = Record<string, never>> = T & {children: ReactNode};
+export type WithChild<T = Record<string, never>> = T & {children: ReactElement};
+export type WithOnlyTextChild<T = Record<string, never>> = T & {children: (number | string)[] | number[] | string[] | number | string};
+export type WithOptionalOnlyTextChild<T = Record<string, never>> = T & {
     children?: (number | string)[] | number[] | string[] | number | string;
 };
 

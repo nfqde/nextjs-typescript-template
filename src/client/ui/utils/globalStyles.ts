@@ -27,11 +27,11 @@ export const breakpoints = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const;
 export const {configType, globalCss: globalGridCss} = createConfig(breakpoints, {
     baseSpacing: 0.4,
     container: {
-        lg: 'fluid',
-        md: 'fluid',
-        sm: 'fluid',
-        xl: 1140,
         xs: 'fluid',
+        sm: 'fluid',
+        md: 'fluid',
+        lg: 'fluid',
+        xl: 1140,
         xxl: 1140
     }
 });
@@ -64,16 +64,13 @@ export const globals = css`
     }
 
     html, body {
+        background-color: ${themeColors.pageBackground};
+        color: ${themeColors.primaryFontColor};
+        font-family: ${theme.fonts.Lato};
         margin: 0;
         min-height: 100%;
-        position: relative;
-    }
-
-    body {
-        background-color: ${theme.colors.pageBackground};
-        color: ${theme.colors.primaryFontColor};
-        font-family: ${theme.fonts.Lato};
         padding: 0;
+        scroll-behavior: smooth;
     }
 
     #__next {

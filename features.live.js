@@ -1,1 +1,4 @@
-module.exports = {COVERAGE: false};
+module.exports = {
+    COVERAGE: false,
+    TEST: true
+};
