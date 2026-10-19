@@ -27,6 +27,10 @@ const aliases = [
         path: './src/client/ui/'
     },
     {
+        alias: 'GlobalShared',
+        path: './src/shared/'
+    },
+    {
         alias: 'ApiRoutes',
         path: './src/pages/api/'
     },
@@ -83,7 +87,7 @@ const extensions = [
 ];
 
 /**
- * Plugin for cors.
+ * Plugin for aliases.
  *
  * @param {import('next').NextConfig} nextConfig The next config.
  *
@@ -114,11 +118,11 @@ const withAliases = nextConfig => ({
 });
 
 /**
- * Plugin for cors.
+ * Plugin for aliases.
  *
- * @param {Parameters<NonNullable<import('@storybook/nextjs').StorybookConfig['webpackFinal']>>[0] | import('webpack').Configuration} config The next config.
+ * @param {Parameters<NonNullable<import('@storybook/nextjs-vite').StorybookConfig['viteFinal']>>[0] | import('webpack').Configuration} config The next config.
  *
- * @returns {Parameters<NonNullable<import('@storybook/nextjs').StorybookConfig['webpackFinal']>>[0] | import('webpack').Configuration} The next config.
+ * @returns {Parameters<NonNullable<import('@storybook/nextjs-vite').StorybookConfig['viteFinal']>>[0] | import('webpack').Configuration} The next config.
  */
 const addAliases = config => {
     if (!config.resolve) {

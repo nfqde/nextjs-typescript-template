@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle, no-undef, security/detect-object-injection */
+/* eslint-disable no-underscore-dangle */
 import 'cypress/react';
 import type {ReactElement, ReactNode} from 'react';
 

@@ -1,10 +1,10 @@
-/* eslint-disable no-param-reassign */
 const withBundleAnalyzer = require('@next/bundle-analyzer')({enabled: process.env.ANALYZE === 'true'});
 const {withFeatureFlags} = require('@nfq/feature-flags/next');
 const {WatchFontsConfigPlugin} = require('@nfq/next-fonts/webpack');
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const {PHASE_DEVELOPMENT_SERVER} = require('next/constants');
 
+const devFeatures = require('./features.dev');
 const liveFeatures = require('./features.live');
 const stageFeatures = require('./features.stage');
 const testFeatures = require('./features.test');
@@ -15,13 +15,13 @@ const withCors = require('./withCors');
 /** @type {import('next').NextConfig} */
 const nextConfig = phase => ({
     compiler: {emotion: {autoLabel: 'never'}},
-    eslint: {ignoreDuringBuilds: true},
     experimental: {
         swcPlugins: [
             [
                 '@nfq/feature-flags', {
                     featureEnv: process.env.FEATURE_ENV || 'stage',
                     featureFlags: {
+                        dev: devFeatures,
                         live: liveFeatures,
                         stage: stageFeatures,
                         test: testFeatures
@@ -83,6 +83,11 @@ const nextConfig = phase => ({
     webpack(config) {
         const isDev = phase === PHASE_DEVELOPMENT_SERVER;
 
+        config.module.rules.push({
+            test: /\.ttf|\.woff2/u,
+            type: 'asset/resource'
+        });
+
         if (isDev) {
             config.plugins.push(new DuplicatePackageCheckerPlugin({
                 /**
@@ -109,7 +114,7 @@ const nextConfig = phase => ({
 module.exports = phase => withBundleAnalyzer(
     withFeatureFlags(
         withAliases(
-            withCors(nextConfig, {phase})
+            withCors(nextConfig(phase), {phase})
         ),
         {phase}
     )
