@@ -57,6 +57,7 @@
         "types/**/*.ts",
         "types/**/*.d.ts",
         "cypress.config.ts",
+        "cypress.stryker.config.ts",
         "cypress/support/index.d.ts",
         "cypress/**/*.ts",
         "cypress/**/*.tsx",
